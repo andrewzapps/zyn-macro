@@ -73,12 +73,12 @@ ipcMain.handle('start-macro', async (event, data) =>
 
   const resourcePath = getResourcePath();
   const ahkExePath = path.join(resourcePath, 'submacros', 'AutoHotkey32.exe');
-  const ahkScriptPath = path.join(resourcePath, 'submacros', 'natro_macro.ahk');
+  const ahkScriptPath = path.join(resourcePath, 'submacros', 'zyn_macro.ahk');
   const workingDir = resourcePath;
   
   try
   {
-    ahkProcess = spawn(ahkExePath, [ahkScriptPath, '/zynui'], { cwd: workingDir });
+    ahkProcess = spawn(ahkExePath, [ahkScriptPath], { cwd: workingDir });
     
     console.log('Spawning AHK process:', ahkExePath);
     console.log('Script path:', ahkScriptPath);
@@ -163,10 +163,6 @@ SetTitleMatchMode 2
 
 pid := ${pid}
 hwnd := WinExist("ahk_pid " pid)
-if (!hwnd)
-    hwnd := WinExist("Natro Macro ahk_class AutoHotkey")
-if (!hwnd)
-    hwnd := WinExist("Natro Macro (Zyn UI Mode - Background) ahk_class AutoHotkey")
 
 if (hwnd)
 {
