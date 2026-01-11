@@ -5,20 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Natro Macro</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div class="app-container">
     <div class="main-content">
       <div class="sidebar">
-        <div class="tab-icon active" data-tab="gather" title="Gather"></div>
-        <div class="tab-icon" data-tab="collect" title="Collect/Kill"></div>
-        <div class="tab-icon" data-tab="boost" title="Boost">⚡</div>
-        <div class="tab-icon" data-tab="quests" title="Quests"></div>
-        <div class="tab-icon" data-tab="planters" title="Planters"></div>
-        <div class="tab-icon" data-tab="status" title="Status"></div>
-        <div class="tab-icon" data-tab="settings" title="Settings"></div>
-        <div class="tab-icon" data-tab="misc" title="Misc"></div>
-        <div class="tab-icon" data-tab="credits" title="Credits"></div>
+        <div class="tab-icon active" data-tab="gather" title="Gather">
+          <i data-lucide="flower-2"></i>
+        </div>
+        <div class="tab-icon" data-tab="collect" title="Collect/Kill">
+          <i data-lucide="bug-off"></i>
+        </div>
+        <div class="tab-icon" data-tab="boost" title="Boost">
+          <i data-lucide="zap"></i>
+        </div>
+        <div class="tab-icon" data-tab="quests" title="Quests">
+          <i data-lucide="scroll-text"></i>
+        </div>
+        <div class="tab-icon" data-tab="planters" title="Planters">
+          <i data-lucide="flower"></i>
+        </div>
+        <div class="tab-icon" data-tab="status" title="Status">
+          <i data-lucide="activity"></i>
+        </div>
+        <div class="tab-icon" data-tab="settings" title="Settings">
+          <i data-lucide="settings"></i>
+        </div>
+        <div class="tab-icon" data-tab="misc" title="Misc">
+          <i data-lucide="package"></i>
+        </div>
+        <div class="tab-icon" data-tab="credits" title="Credits">
+          <i data-lucide="users"></i>
+        </div>
       </div>
 
       <div class="content-area">
@@ -420,9 +439,343 @@
           </div>
 
           <div id="collect-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Collect/Kill Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="sub-tabs">
+              <button class="sub-tab-btn active" data-subtab="collect-content">Collect</button>
+              <button class="sub-tab-btn" data-subtab="kill-content">Kill</button>
+            </div>
+
+            <div id="collect-content" class="sub-tab-content active">
+              <div class="section-grid">
+                <div class="section-card">
+                  <div class="section-title">Collect</div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="clockCheck" checked>
+                    <label for="clockCheck" class="checkbox-label">Clock (tickets)</label>
+                  </div>
+                  <div style="margin-top: 12px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="mondoCheck" checked>
+                      <label for="mondoCheck" class="checkbox-label">Mondo</label>
+                    </div>
+                    <div class="control-input-group" style="margin-top: 8px;">
+                      <button class="btn btn-secondary btn-icon">&lt;</button>
+                      <input type="text" class="number-input" value="Buff" readonly style="width: 80px;">
+                      <button class="btn btn-secondary btn-icon">&gt;</button>
+                    </div>
+                  </div>
+                  <div style="margin-top: 12px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="antPassCheck" checked>
+                      <label for="antPassCheck" class="checkbox-label">Ant</label>
+                    </div>
+                    <div class="control-input-group" style="margin-top: 8px;">
+                      <button class="btn btn-secondary btn-icon">&lt;</button>
+                      <input type="text" class="number-input" value="Challenge" readonly style="width: 100px;">
+                      <button class="btn btn-secondary btn-icon">&gt;</button>
+                    </div>
+                    <div class="checkbox-wrapper" style="margin-top: 8px;">
+                      <input type="checkbox" id="antPassBuyCheck" checked>
+                      <label for="antPassBuyCheck" class="checkbox-label">Use Tickets</label>
+                    </div>
+                  </div>
+                  <div class="checkbox-wrapper" style="margin-top: 12px;">
+                    <input type="checkbox" id="honeystormCheck" checked>
+                    <label for="honeystormCheck" class="checkbox-label">Honeystorm</label>
+                  </div>
+                </div>
+
+                <div class="section-card">
+                  <div class="section-title">Dispensers</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="honeyDisCheck" checked>
+                      <label for="honeyDisCheck" class="checkbox-label">Honey</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="royalJellyCheck" checked>
+                      <label for="royalJellyCheck" class="checkbox-label">Royal Jelly</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="treatDisCheck" checked>
+                      <label for="treatDisCheck" class="checkbox-label">Treat</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="glueDisCheck" checked>
+                      <label for="glueDisCheck" class="checkbox-label">Glue</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="blueberryCheck" checked>
+                      <label for="blueberryCheck" class="checkbox-label">Blueberry</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="roboPassCheck" checked>
+                      <label for="roboPassCheck" class="checkbox-label">Robo Pass</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="strawberryCheck" checked>
+                      <label for="strawberryCheck" class="checkbox-label">Strawberry</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="coconutCheck" checked>
+                      <label for="coconutCheck" class="checkbox-label">Coconut</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="section-card">
+                  <div class="section-title">Memory Match</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="normalMMCheck" checked>
+                      <label for="normalMMCheck" class="checkbox-label">Normal</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="megaMMCheck" checked>
+                      <label for="megaMMCheck" class="checkbox-label">Mega</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="nightMMCheck" checked>
+                      <label for="nightMMCheck" class="checkbox-label">Night</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="extremeMMCheck" checked>
+                      <label for="extremeMMCheck" class="checkbox-label">Extreme</label>
+                    </div>
+                  </div>
+                  <button class="btn btn-secondary" style="margin-top: 12px; width: 100%;">Options</button>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">Blender</div>
+                <div style="display: flex; gap: 16px; justify-content: center;">
+                  <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 24px;">?</div>
+                    <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">(0) [1]</div>
+                    <button class="btn btn-secondary btn-small">Add</button>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 24px;">?</div>
+                    <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">(0) [1]</div>
+                    <button class="btn btn-secondary btn-small">Add</button>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 24px;">?</div>
+                    <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">(0) [1]</div>
+                    <button class="btn btn-secondary btn-small">Add</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">Beesmas (Inactive)</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="beesmasInterrupt">
+                  <label for="beesmasInterrupt" class="checkbox-label">Allow Gather Interrupt</label>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px;">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="stockingsCheck">
+                    <label for="stockingsCheck" class="checkbox-label">Stockings</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="gingerbreadCheck">
+                    <label for="gingerbreadCheck" class="checkbox-label">Gingerbread</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="samovarCheck">
+                    <label for="samovarCheck" class="checkbox-label">Samovar</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="wreathCheck">
+                    <label for="wreathCheck" class="checkbox-label">Honey Wreath</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="snowMachineCheck">
+                    <label for="snowMachineCheck" class="checkbox-label">Snow Machine</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="lidArtCheck">
+                    <label for="lidArtCheck" class="checkbox-label">Lid Art</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="feastCheck">
+                    <label for="feastCheck" class="checkbox-label">Feast</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="candlesCheck">
+                    <label for="candlesCheck" class="checkbox-label">Candles</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="gummyBeaconCheck">
+                    <label for="gummyBeaconCheck" class="checkbox-label">Gummy Beacon</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="rbpDelevelCheck">
+                    <label for="rbpDelevelCheck" class="checkbox-label">Robo Party De-level</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="winterMMCheck">
+                    <label for="winterMMCheck" class="checkbox-label">Winter Memory Match</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="kill-content" class="sub-tab-content">
+              <div class="section-card">
+                <div class="section-title">Bug Run</div>
+                <div class="form-row" style="margin-bottom: 16px;">
+                  <div class="form-group">
+                    <div class="control-label">Monster Respawn Time</div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                      <input type="number" class="number-input" value="90" min="0" max="99">
+                      <span style="font-size: 12px; color: var(--text-secondary);">%</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label style="opacity: 0;">Spacer</label>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="bugrunInterrupt" checked>
+                      <label for="bugrunInterrupt" class="checkbox-label">Allow Gather Interrupt</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label style="opacity: 0;">Spacer</label>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="bugrunSelectAll">
+                      <label for="bugrunSelectAll" class="checkbox-label">Select All</label>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: grid; grid-template-columns: auto 1fr 1fr; gap: 8px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                  <div></div>
+                  <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; text-align: center;">Loot</div>
+                  <div style="font-size: 11px; color: var(--text-secondary); text-transform: uppercase; text-align: center;">Kill</div>
+                  
+                  <div class="checkbox-label" style="padding: 4px 0;">Ladybugs</div>
+                  <div style="text-align: center;"><input type="checkbox" id="ladybugsLoot" checked></div>
+                  <div style="text-align: center;"><input type="checkbox" id="ladybugsKill" checked></div>
+                  
+                  <div class="checkbox-label" style="padding: 4px 0;">Rhino Beetles</div>
+                  <div style="text-align: center;"><input type="checkbox" id="rhinoLoot" checked></div>
+                  <div style="text-align: center;"><input type="checkbox" id="rhinoKill" checked></div>
+                  
+                  <div class="checkbox-label" style="padding: 4px 0;">Spider</div>
+                  <div style="text-align: center;"><input type="checkbox" id="spiderLoot" checked></div>
+                  <div style="text-align: center;"><input type="checkbox" id="spiderKill" checked></div>
+                  
+                  <div class="checkbox-label" style="padding: 4px 0;">Mantis</div>
+                  <div style="text-align: center;"><input type="checkbox" id="mantisLoot" checked></div>
+                  <div style="text-align: center;"><input type="checkbox" id="mantisKill" checked></div>
+                  
+                  <div class="checkbox-label" style="padding: 4px 0;">Scorpions</div>
+                  <div style="text-align: center;"><input type="checkbox" id="scorpionsLoot" checked></div>
+                  <div style="text-align: center;"><input type="checkbox" id="scorpionsKill" checked></div>
+                  
+                  <div class="checkbox-label" style="padding: 4px 0;">Werewolf</div>
+                  <div style="text-align: center;"><input type="checkbox" id="werewolfLoot" checked></div>
+                  <div style="text-align: center;"><input type="checkbox" id="werewolfKill" checked></div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">Stingers</div>
+                <div class="form-row">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="stingerCheck" checked>
+                    <label for="stingerCheck" class="checkbox-label">Kill Vicious Bee</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="stingerDailyCheck" checked>
+                    <label for="stingerDailyCheck" class="checkbox-label">Only Daily Bonus</label>
+                  </div>
+                </div>
+                <div style="margin-top: 12px;">
+                  <div class="control-label" style="margin-bottom: 8px;">Fields:</div>
+                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="stingerClover" checked>
+                      <label for="stingerClover" class="checkbox-label">Clover</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="stingerCactus" checked>
+                      <label for="stingerCactus" class="checkbox-label">Cactus</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="stingerMountain" checked>
+                      <label for="stingerMountain" class="checkbox-label">Mountain Top</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="stingerSpider" checked>
+                      <label for="stingerSpider" class="checkbox-label">Spider</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="stingerRose" checked>
+                      <label for="stingerRose" class="checkbox-label">Rose</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="stingerPepper" checked>
+                      <label for="stingerPepper" class="checkbox-label">Pepper</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">Bosses</div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="snailCheck">
+                    <label for="snailCheck" class="checkbox-label">Stump Snail</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="beetleCheck">
+                    <label for="beetleCheck" class="checkbox-label">King Beetle</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="tunnelCheck">
+                    <label for="tunnelCheck" class="checkbox-label">Tunnel Bear</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="mantisCheck">
+                    <label for="mantisCheck" class="checkbox-label">Mantis Boss</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="werewolfCheck">
+                    <label for="werewolfCheck" class="checkbox-label">Werewolf</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="crabCheck">
+                    <label for="crabCheck" class="checkbox-label">Coconut Crab</label>
+                  </div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="chickCheck">
+                    <label for="chickCheck" class="checkbox-label">Commando Chick</label>
+                  </div>
+                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px;">
+                    <div class="control-group">
+                      <div class="control-label">Level</div>
+                      <input type="number" class="number-input" value="5" min="1" max="10">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Health Target %</div>
+                      <input type="number" class="number-input" value="25" min="0" max="100">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Time Limit</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">-</button>
+                        <input type="text" class="number-input" value="15m" readonly>
+                        <button class="btn btn-secondary btn-icon">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-secondary" style="margin-top: 12px;">Boss Configuration</button>
+              </div>
             </div>
           </div>
 
