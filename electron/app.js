@@ -847,6 +847,101 @@ function setupQuestsListeners()
   }
 }
 
+async function loadPlantersConfig()
+{
+  try
+  {
+    const result = await window.electronAPI.loadConfig();
+    
+    if (result.success && result.config && result.config.Planters)
+    {
+      const plantersConfig = result.config.Planters;
+      
+      const planterModeSlider = document.getElementById('planterModeSlider');
+      if (planterModeSlider && plantersConfig.PlanterMode !== undefined)
+      {
+        planterModeSlider.value = plantersConfig.PlanterMode;
+        updatePlanterModeDisplay(parseInt(plantersConfig.PlanterMode));
+      }
+      
+      const checkboxMapping = {
+        'harvestFullGrown': 'HarvestFullGrown',
+        'automaticHarvestInterval': 'AutomaticHarvestInterval',
+        'gotoPlanterField': 'gotoPlanterField',
+        'gatherFieldSipping': 'gatherFieldSipping'
+      };
+      
+      Object.entries(checkboxMapping).forEach(([id, key]) =>
+      {
+        const checkbox = document.getElementById(id);
+        if (checkbox && plantersConfig[key] !== undefined)
+        {
+          checkbox.checked = plantersConfig[key] === '1';
+        }
+      });
+      
+      console.log('Planters config loaded successfully');
+    }
+  }
+  catch (error)
+  {
+    console.error('Error loading planters config:', error);
+  }
+}
+
+function updatePlanterModeDisplay(mode)
+{
+  const planterContentPlus = document.querySelector('.planter-content-plus');
+  
+  if (mode === 0)
+  {
+    if (planterContentPlus) planterContentPlus.style.display = 'none';
+  }
+  else if (mode === 1)
+  {
+    if (planterContentPlus) planterContentPlus.style.display = 'none';
+  }
+  else if (mode === 2)
+  {
+    if (planterContentPlus) planterContentPlus.style.display = 'flex';
+  }
+}
+
+function setupPlantersListeners()
+{
+  const planterModeSlider = document.getElementById('planterModeSlider');
+  if (planterModeSlider)
+  {
+    planterModeSlider.addEventListener('input', async (e) =>
+    {
+      const mode = parseInt(e.target.value);
+      updatePlanterModeDisplay(mode);
+      await window.electronAPI.saveConfig('Planters', 'PlanterMode', mode.toString());
+      console.log('Saved PlanterMode:', mode);
+    });
+  }
+  
+  const checkboxMapping = {
+    'harvestFullGrown': 'HarvestFullGrown',
+    'automaticHarvestInterval': 'AutomaticHarvestInterval',
+    'gotoPlanterField': 'gotoPlanterField',
+    'gatherFieldSipping': 'gatherFieldSipping'
+  };
+  
+  Object.entries(checkboxMapping).forEach(([id, key]) =>
+  {
+    const checkbox = document.getElementById(id);
+    if (checkbox)
+    {
+      checkbox.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Planters', key, checkbox.checked ? '1' : '0');
+        console.log(`Saved ${key}:`, checkbox.checked);
+      });
+    }
+  });
+}
+
 setupGatherFieldListeners();
 loadGatherConfig();
 
@@ -858,5 +953,8 @@ loadBoostConfig();
 
 setupQuestsListeners();
 loadQuestsConfig();
+
+setupPlantersListeners();
+loadPlantersConfig();
 
 lucide.createIcons();
