@@ -50,7 +50,8 @@
             <div class="section-card">
               <div class="section-title">Field Rotation</div>
               
-              <div class="field-item">
+              <div id="field-rotation-container">
+              <div class="field-item" data-field-number="1">
                 <div class="field-item-header">
                   <div class="field-number">1</div>
                   <div class="form-group" style="flex: 2;">
@@ -75,6 +76,7 @@
                   </div>
                   <button class="btn btn-secondary btn-small">Copy</button>
                   <button class="btn btn-secondary btn-small">Paste</button>
+                  <button class="btn btn-danger btn-small remove-field-btn">Remove</button>
                 </div>
 
                 <div class="field-sections">
@@ -178,7 +180,7 @@
                 </div>
               </div>
 
-              <div class="field-item">
+              <div class="field-item" data-field-number="2">
                 <div class="field-item-header">
                   <div class="field-number">2</div>
                   <div class="form-group" style="flex: 2;">
@@ -204,6 +206,7 @@
                   </div>
                   <button class="btn btn-secondary btn-small">Copy</button>
                   <button class="btn btn-secondary btn-small">Paste</button>
+                  <button class="btn btn-danger btn-small remove-field-btn">Remove</button>
                 </div>
 
                 <div class="field-sections">
@@ -307,7 +310,7 @@
                 </div>
               </div>
 
-              <div class="field-item">
+              <div class="field-item" data-field-number="3">
                 <div class="field-item-header">
                   <div class="field-number">3</div>
                   <div class="form-group" style="flex: 2;">
@@ -333,6 +336,7 @@
                   </div>
                   <button class="btn btn-secondary btn-small">Copy</button>
                   <button class="btn btn-secondary btn-small">Paste</button>
+                  <button class="btn btn-danger btn-small remove-field-btn">Remove</button>
                 </div>
 
                 <div class="field-sections">
@@ -435,6 +439,12 @@
                   </div>
                 </div>
               </div>
+              </div>
+
+              <button class="btn btn-primary" id="addFieldBtn" style="width: 100%; margin-top: 16px;">
+                <i data-lucide="plus" style="width: 16px; height: 16px; margin-right: 5px;"></i>
+                Add Field (3/7)
+              </button>
             </div>
           </div>
 
@@ -1354,30 +1364,420 @@
           </div>
 
           <div id="status-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Status Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
+              <div class="section-card">
+                <div class="section-title-row">
+                  <div class="section-title">STATUS LOG</div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="statusLogReverse" checked>
+                    <label for="statusLogReverse" class="checkbox-label">Reverse Order</label>
+                  </div>
+                </div>
+                <div class="status-log-container">
+                  <div class="status-log-entry">[00:00:00] Macro started</div>
+                  <div class="status-log-entry">[00:00:05] Initializing...</div>
+                  <div class="status-log-entry">[00:00:10] Ready</div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">STATS</div>
+                <div class="stats-grid">
+                  <div class="stats-column">
+                    <div class="stats-header">
+                      Total
+                      <button class="btn btn-secondary btn-icon" style="margin-left: 10px;">Reset</button>
+                    </div>
+                    <div class="stats-content">
+                      <div class="stat-row">
+                        <span class="stat-label">Runtime:</span>
+                        <span class="stat-value">0h 0m</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Gather Time:</span>
+                        <span class="stat-value">0h 0m</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Convert Time:</span>
+                        <span class="stat-value">0h 0m</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Vicious Kills:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Boss Kills:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Bug Kills:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Planters:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Quests:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Disconnects:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="stats-column">
+                    <div class="stats-header">Session</div>
+                    <div class="stats-content">
+                      <div class="stat-row">
+                        <span class="stat-label">Runtime:</span>
+                        <span class="stat-value">0h 0m</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Gather Time:</span>
+                        <span class="stat-value">0h 0m</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Convert Time:</span>
+                        <span class="stat-value">0h 0m</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Vicious Kills:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Boss Kills:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Bug Kills:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Planters:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Quests:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                      <div class="stat-row">
+                        <span class="stat-label">Disconnects:</span>
+                        <span class="stat-value">0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section-card" style="grid-column: 1 / -1;">
+                <div class="section-title">DISCORD INTEGRATION</div>
+                <button class="btn btn-secondary" style="margin-top: 10px; width: 100%;">Change Discord Settings</button>
+              </div>
             </div>
           </div>
 
           <div id="settings-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Settings Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="settings-grid">
+              <div class="section-card">
+                <div class="section-title">GUI</div>
+                
+                <div class="form-row">
+                  <div class="control-label">GUI Theme:</div>
+                  <select class="form-select" style="width: 100px;">
+                    <option>Dark</option>
+                    <option>Light</option>
+                    <option>Blue</option>
+                  </select>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">GUI Transparency:</div>
+                  <input type="number" class="number-input" value="0" min="0" max="14" style="width: 50px;">
+                </div>
+
+                <div class="checkbox-wrapper" style="margin-top: 15px;">
+                  <input type="checkbox" id="alwaysOnTop" checked>
+                  <label for="alwaysOnTop" class="checkbox-label">Always On Top</label>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">INPUT</div>
+                
+                <div class="form-row">
+                  <div class="control-label">Add Key Delay (ms):</div>
+                  <input type="number" class="number-input" value="0" min="0" max="9999" style="width: 80px;">
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">HIVE</div>
+                
+                <div class="form-row">
+                  <div class="control-label">Hive Slot:</div>
+                  <input type="number" class="number-input" value="6" min="1" max="6" style="width: 50px;">
+                  <span class="text-label" style="font-size: 10px;">(6-5-4-3-2-1)</span>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">My Hive Has:</div>
+                  <input type="number" class="number-input" value="50" min="1" max="50" style="width: 50px;">
+                  <span class="text-label">Bees</span>
+                  <button class="btn btn-secondary btn-icon">?</button>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Wait</div>
+                  <input type="number" class="number-input" value="0" min="0" max="99" style="width: 50px;">
+                  <span class="text-label">seconds after convert</span>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">RECONNECT</div>
+                
+                <button class="btn btn-secondary" style="margin-bottom: 15px;">Test</button>
+
+                <div class="form-row">
+                  <div class="control-label">Private Server Link:</div>
+                </div>
+                <input type="text" class="text-input" placeholder="Enter private server link" style="width: 100%; margin-top: 5px;">
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Join Method:</div>
+                  <div class="control-input-group">
+                    <button class="btn btn-secondary btn-icon">&lt;</button>
+                    <input type="text" class="text-input" value="Browser" readonly style="width: 80px;">
+                    <button class="btn btn-secondary btn-icon">&gt;</button>
+                  </div>
+                  <button class="btn btn-secondary btn-icon">?</button>
+                </div>
+
+                <div class="section-subtitle" style="margin-top: 20px;">Daily Reconnect (optional):</div>
+                
+                <div class="form-row" style="margin-top: 10px;">
+                  <div class="control-label">Reconnect every</div>
+                  <input type="number" class="number-input" value="" placeholder="0" min="0" max="99" style="width: 50px;">
+                  <span class="text-label">hours</span>
+                </div>
+
+                <div class="form-row" style="margin-top: 10px;">
+                  <div class="control-label">starting at</div>
+                  <input type="text" class="text-input" placeholder="00" style="width: 40px;">
+                  <span class="text-label">:</span>
+                  <input type="text" class="text-input" placeholder="00" style="width: 40px;">
+                  <span class="text-label" style="font-size: 10px; font-weight: 600;">UTC</span>
+                  <button class="btn btn-secondary btn-icon">?</button>
+                </div>
+
+                <div class="checkbox-wrapper" style="margin-top: 15px;">
+                  <input type="checkbox" id="reconnectMessage" checked>
+                  <label for="reconnectMessage" class="checkbox-label">Natro so broke</label>
+                  <button class="btn btn-secondary btn-icon" style="margin-left: 10px;">?</button>
+                </div>
+
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="publicFallback" checked>
+                  <label for="publicFallback" class="checkbox-label">Fallback to Public Server</label>
+                  <button class="btn btn-secondary btn-icon" style="margin-left: 10px;">?</button>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">RESET</div>
+                
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">Reset Field Defaults</button>
+                <button class="btn btn-danger" style="width: 100%;">Reset All Settings</button>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">CHARACTER</div>
+                
+                <div class="form-row">
+                  <div class="control-label">Movement Speed:</div>
+                  <input type="number" class="number-input" value="28" min="1" max="99999" step="0.1" style="width: 80px;">
+                </div>
+                <div class="text-label" style="font-size: 10px; margin-top: 5px;">(WITHOUT HASTE)</div>
+
+                <div class="checkbox-wrapper" style="margin-top: 15px;">
+                  <input type="checkbox" id="newWalk" checked>
+                  <label for="newWalk" class="checkbox-label">MoveSpeed Correction</label>
+                  <button class="btn btn-secondary btn-icon" style="margin-left: 10px;">?</button>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Move Method:</div>
+                  <div class="control-input-group">
+                    <button class="btn btn-secondary btn-icon">&lt;</button>
+                    <input type="text" class="text-input" value="Walk" readonly style="width: 80px;">
+                    <button class="btn btn-secondary btn-icon">&gt;</button>
+                  </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Sprinkler Type:</div>
+                  <div class="control-input-group">
+                    <button class="btn btn-secondary btn-icon">&lt;</button>
+                    <input type="text" class="text-input" value="Supreme" readonly style="width: 80px;">
+                    <button class="btn btn-secondary btn-icon">&gt;</button>
+                  </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Convert Balloon:</div>
+                  <div class="control-input-group">
+                    <button class="btn btn-secondary btn-icon">&lt;</button>
+                    <input type="text" class="text-input" value="Always" readonly style="width: 80px;">
+                    <button class="btn btn-secondary btn-icon">&gt;</button>
+                  </div>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Convert Every:</div>
+                  <input type="number" class="number-input" value="30" min="1" max="999" style="width: 60px;">
+                  <span class="text-label">Mins</span>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">Multiple Reset:</div>
+                  <input type="range" min="0" max="3" value="0" class="slider" style="width: 100px;">
+                </div>
+
+                <div class="checkbox-wrapper" style="margin-top: 15px;">
+                  <input type="checkbox" id="gatherDoubleReset" checked>
+                  <label for="gatherDoubleReset" class="checkbox-label">Gather Double Reset</label>
+                </div>
+
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="disableToolUse" checked>
+                  <label for="disableToolUse" class="checkbox-label">Disable Tool Use</label>
+                </div>
+
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="announceGuidingStar" checked>
+                  <label for="announceGuidingStar" class="checkbox-label">Announce Guiding Star</label>
+                </div>
+              </div>
             </div>
           </div>
 
           <div id="misc-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Misc Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="misc-grid">
+              <div class="section-card">
+                <div class="section-title">HIVE TOOLS</div>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">Gifted Basic Bee<br>Auto-Hatcher</button>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">Bitterberry<br>Auto-Feeder</button>
+                <button class="btn btn-secondary" style="width: 100%;">Auto-Jelly</button>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">CALCULATORS</div>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">Ticket Shop Calculator<br>(Google Sheets)</button>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">SSA Calculator<br>(Google Sheets)</button>
+                <button class="btn btn-secondary" style="width: 100%;">Bond Calculator<br>(Google Sheets)</button>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">MACRO TOOLS</div>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">Change Hotkeys</button>
+                <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;">Debug Log Options</button>
+                <button class="btn btn-secondary" style="width: 100%;">Auto-Start Manager</button>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">OTHER TOOLS</div>
+                <button class="btn btn-secondary" style="width: 100%;">Export Hive Bee List<br>(for Hive Builder)</button>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">AUTOCLICKER (F6)</div>
+                <button class="btn btn-secondary" style="width: 100%;">AutoClicker<br>Settings</button>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">DISCORD TOOLS</div>
+                <button class="btn btn-secondary" style="width: 100%;">Night Detection<br>Announcement</button>
+              </div>
+
+              <div class="section-card" style="grid-column: 1 / -1;">
+                <div class="section-title">BUGS AND SUGGESTIONS</div>
+                <div class="grid-2-col">
+                  <button class="btn btn-secondary">Report Bugs</button>
+                  <button class="btn btn-secondary">Make Suggestions</button>
+                </div>
+              </div>
             </div>
           </div>
 
           <div id="credits-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Credits Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="credits-container">
+              <div class="section-card credits-card">
+                <div class="credits-header">
+                  <i data-lucide="code-2" style="width: 48px; height: 48px; color: var(--accent);"></i>
+                  <h1 class="credits-title">Zyn Macro</h1>
+                  <p class="credits-subtitle">andrewzapps</p>
+                </div>
+
+                <div class="credits-section">
+                  <div class="credits-label">ORIGINAL MACRO</div>
+                  <div class="credits-content">
+                    <div class="credit-item">
+                      <i data-lucide="github"></i>
+                      <div class="credit-info">
+                        <div class="credit-name">Natro Macro</div>
+                        <a href="https://github.com/NatroTeam/NatroMacro" class="credit-link" target="_blank">
+                          github.com/NatroTeam/NatroMacro
+                        </a>
+                      </div>
+                    </div>
+                    <p class="credits-description">
+                      This macro is based on the incredible work of the Natro Macro team. 
+                      All core functionality, automation logic, and game mechanics are powered by Natro Macro.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="credits-divider"></div>
+
+                <div class="credits-section">
+                  <div class="credits-label">UI REDESIGN</div>
+                  <div class="credits-content">
+                    <div class="credit-item">
+                      <i data-lucide="github"></i>
+                      <div class="credit-info">
+                        <div class="credit-name">andrewzapps</div>
+                        <a href="https://github.com/andrewzapps" class="credit-link" target="_blank">
+                          github.com/andrewzapps
+                        </a>
+                      </div>
+                    </div>
+                    <p class="credits-description">
+                      Natro Macro but with a revamped ui. Check out the github and please leave a star! 
+                    </p>
+                  </div>
+                </div>
+
+                <div class="credits-divider"></div>
+
+                <div class="credits-section">
+                  <div class="credits-content" style="text-align: center;">
+                    <div class="credits-label">TECH STACK</div>
+                    <div class="tech-stack">
+                      <span class="tech-badge">Electron.js</span>
+                      <span class="tech-badge">AutoHotkey v2</span>
+                      <span class="tech-badge">HTML/CSS/JS</span>
+                      <span class="tech-badge">Lucide Icons</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="credits-footer">
+                  <p>Licensed under GPL-3.0</p>
+                  <p>For Bee Swarm Simulator</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

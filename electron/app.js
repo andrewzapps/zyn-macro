@@ -107,4 +107,228 @@ subTabBtns.forEach(btn =>
   });
 });
 
+let fieldCount = 3;
+const maxFields = 7;
+const fieldRotationContainer = document.getElementById('field-rotation-container');
+const addFieldBtn = document.getElementById('addFieldBtn');
+
+function createFieldItem(fieldNumber)
+{
+  const fieldItem = document.createElement('div');
+  fieldItem.className = 'field-item';
+  fieldItem.dataset.fieldNumber = fieldNumber;
+  
+  fieldItem.innerHTML = `
+    <div class="field-item-header">
+      <div class="field-number">${fieldNumber}</div>
+      <div class="form-group" style="flex: 2;">
+        <select class="form-select" id="field${fieldNumber}">
+          <option>None</option>
+          <option>Pine Tree</option>
+          <option>Blue Flower</option>
+          <option>Pumpkin</option>
+          <option>Sunflower</option>
+          <option>Strawberry</option>
+          <option>Bamboo</option>
+          <option>Dandelion</option>
+          <option>Spider</option>
+          <option>Clover</option>
+          <option>Mushroom</option>
+          <option>Rose</option>
+          <option>Cactus</option>
+          <option>Coconut</option>
+          <option>Mountain Top</option>
+          <option>Pepper</option>
+          <option>Pineapple</option>
+        </select>
+      </div>
+      <button class="btn btn-secondary btn-small">Copy</button>
+      <button class="btn btn-secondary btn-small">Paste</button>
+      <button class="btn btn-danger btn-small remove-field-btn">Remove</button>
+    </div>
+
+    <div class="field-sections">
+      <div class="field-section">
+        <div class="field-section-title">Gathering</div>
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="drift${fieldNumber}">
+          <label for="drift${fieldNumber}" class="checkbox-label">Drift Comp</label>
+        </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-section-title">Pattern</div>
+        <div class="control-group">
+          <div class="control-label">Pattern Shape</div>
+          <select class="form-select">
+            <option>Diamonds</option>
+            <option>e_lol</option>
+            <option>Snake</option>
+            <option>Squares</option>
+            <option>Stationary</option>
+            <option>SuperCat</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Length</div>
+          <input type="number" class="number-input" value="3" min="1" max="9">
+        </div>
+        <div class="control-group">
+          <div class="control-label">Width</div>
+          <input type="number" class="number-input" value="2" min="1" max="9">
+        </div>
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="shift${fieldNumber}">
+          <label for="shift${fieldNumber}" class="checkbox-label">Gather w/Shift-Lock</label>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="control-label" style="margin: 0;">Invert:</span>
+          <div class="checkbox-wrapper" style="flex: 1;">
+            <input type="checkbox" id="invertFB${fieldNumber}">
+            <label for="invertFB${fieldNumber}" class="checkbox-label">F/B</label>
+          </div>
+          <div class="checkbox-wrapper" style="flex: 1;">
+            <input type="checkbox" id="invertLR${fieldNumber}">
+            <label for="invertLR${fieldNumber}" class="checkbox-label">L/R</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-section-title">Until</div>
+        <div class="control-group">
+          <div class="control-label">Mins</div>
+          <input type="number" class="number-input" value="30" min="0">
+        </div>
+        <div class="control-group">
+          <div class="control-label">Pack %</div>
+          <div class="control-input-group">
+            <button class="btn btn-secondary btn-icon">-</button>
+            <input type="text" class="number-input" value="95" readonly>
+            <button class="btn btn-secondary btn-icon">+</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Rotate Camera</div>
+          <div class="control-input-group">
+            <button class="btn btn-secondary btn-icon">&lt;</button>
+            <input type="text" class="number-input" value="None" readonly>
+            <button class="btn btn-secondary btn-icon">&gt;</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Times</div>
+          <input type="number" class="number-input" value="2" min="1" max="4">
+        </div>
+        <div class="control-group">
+          <div class="control-label">To Hive By</div>
+          <div class="control-input-group">
+            <button class="btn btn-secondary btn-icon">&lt;</button>
+            <input type="text" class="number-input" value="Walk" readonly>
+            <button class="btn btn-secondary btn-icon">&gt;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-section-title">Sprinkler</div>
+        <div class="control-group">
+          <div class="control-label">Start Location</div>
+          <div class="control-input-group">
+            <button class="btn btn-secondary btn-icon">&lt;</button>
+            <input type="text" class="number-input" value="Center" readonly>
+            <button class="btn btn-secondary btn-icon">&gt;</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Distance</div>
+          <input type="number" class="number-input" value="10" min="0">
+        </div>
+      </div>
+    </div>
+  `;
+  
+  const removeBtn = fieldItem.querySelector('.remove-field-btn');
+  removeBtn.addEventListener('click', () => removeField(fieldItem));
+  
+  return fieldItem;
+}
+
+function updateAddButtonText()
+{
+  addFieldBtn.innerHTML = `
+    <i data-lucide="plus" style="width: 16px; height: 16px; margin-right: 5px;"></i>
+    Add Field (${fieldCount}/7)
+  `;
+  lucide.createIcons();
+  
+  if (fieldCount >= maxFields)
+  {
+    addFieldBtn.disabled = true;
+    addFieldBtn.style.opacity = '0.5';
+    addFieldBtn.style.cursor = 'not-allowed';
+  }
+  else
+  {
+    addFieldBtn.disabled = false;
+    addFieldBtn.style.opacity = '1';
+    addFieldBtn.style.cursor = 'pointer';
+  }
+}
+
+function removeField(fieldItem)
+{
+  if (fieldCount <= 1)
+  {
+    alert('You must have at least 1 field!');
+    return;
+  }
+  
+  fieldItem.remove();
+  fieldCount--;
+  updateAddButtonText();
+  renumberFields();
+}
+
+function renumberFields()
+{
+  const fields = fieldRotationContainer.querySelectorAll('.field-item');
+  fields.forEach((field, index) =>
+  {
+    const number = index + 1;
+    field.dataset.fieldNumber = number;
+    field.querySelector('.field-number').textContent = number;
+    
+    const fieldSelect = field.querySelector('.form-select');
+    if (fieldSelect)
+    {
+      fieldSelect.id = `field${number}`;
+    }
+  });
+}
+
+addFieldBtn.addEventListener('click', () =>
+{
+  if (fieldCount >= maxFields)
+  {
+    return;
+  }
+  
+  fieldCount++;
+  const newField = createFieldItem(fieldCount);
+  fieldRotationContainer.appendChild(newField);
+  updateAddButtonText();
+  
+  lucide.createIcons();
+});
+
+document.querySelectorAll('.remove-field-btn').forEach(btn =>
+{
+  btn.addEventListener('click', () =>
+  {
+    const fieldItem = btn.closest('.field-item');
+    removeField(fieldItem);
+  });
+});
+
 lucide.createIcons();
