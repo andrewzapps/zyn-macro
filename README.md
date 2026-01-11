@@ -1,4 +1,4 @@
-# Zyn Macro - Modern UI for Natro Macro
+# zyn macro
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
@@ -12,7 +12,7 @@ revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro)
 
 **[Download Zyn Macro v1.0.0 (139 MB)](https://github.com/andrewzapps/zyn-macro/releases/latest)**
 
-### Installation (Super Easy!)
+### Installation
 
 1. **Download** `Zyn-Macro-v1.0.0-Standalone-Windows.zip` from [Releases](https://github.com/andrewzapps/zyn-macro/releases)
 2. **Extract** to any folder (e.g., `C:\Games\ZynMacro\`)
@@ -116,25 +116,7 @@ submacros/AutoHotkey64.exe submacros/natro_macro.ahk
 - All settings are saved to `settings/nm_config.ini`
 - Changes in the UI are saved instantly
 - The macro reads these settings on startup
-- **No coding required!** Everything is point-and-click
 
-## Features Overview
-
-### Synced Tabs
-- **Gather** - Field rotation, patterns, drift compensation, sprinklers
-- **Collect/Kill** - Dispensers, memory match, blender, beesmas, bug run, bosses
-- **Boost** - Field boosters, hotbar slots, stickers
-- **Quests** - Polar, Black, Brown, Honey, Bucko, Riley
-- **Planters** - Dynamic mode (OFF/Manual/+), nectar priority, harvest controls
-- **Settings** - GUI, hive, reconnect, character configuration
-
-### UI Improvements
-- Dark theme with modern aesthetics
-- Icon-based navigation (Lucide Icons)
-- Context-aware settings visibility
-- Dynamic field management (add/remove up to 7 fields)
-- Sub-tabs for better organization
-- Responsive layout
 
 ## License
 
@@ -181,6 +163,5 @@ If you find this project useful, please consider:
 
 ---
 
-Made for the Bee Swarm Simulator community
 
 **Note:** This is a UI redesign of Natro Macro. All core automation functionality is provided by the original Natro Macro backend.
