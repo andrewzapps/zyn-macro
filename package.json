@@ -1,6 +1,6 @@
 {
   "name": "zynmacro",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "natro macro revamped ui",
   "main": "electron/main.js",
   "scripts": {
