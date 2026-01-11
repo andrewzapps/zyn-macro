@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natro Macro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="main-content">
+      <div class="sidebar">
+        <div class="tab-icon active" data-tab="gather" title="Gather"></div>
+        <div class="tab-icon" data-tab="collect" title="Collect/Kill"></div>
+        <div class="tab-icon" data-tab="boost" title="Boost">⚡</div>
+        <div class="tab-icon" data-tab="quests" title="Quests"></div>
+        <div class="tab-icon" data-tab="planters" title="Planters"></div>
+        <div class="tab-icon" data-tab="status" title="Status"></div>
+        <div class="tab-icon" data-tab="settings" title="Settings"></div>
+        <div class="tab-icon" data-tab="misc" title="Misc"></div>
+        <div class="tab-icon" data-tab="credits" title="Credits"></div>
+      </div>
+
+      <div class="content-area">
+        <div class="content-header">
+          <div class="content-title" id="pageTitle">Gathering</div>
+        </div>
+
+        <div class="content-body">
+          <div id="gather-tab" class="tab-content active">
+            <div class="section-card">
+              <div class="section-title">Field Rotation</div>
+              
+              <div class="field-item">
+                <div class="field-item-header">
+                  <div class="field-number">1</div>
+                  <div class="form-group" style="flex: 2;">
+                    <select class="form-select" id="field1">
+                      <option>Pine Tree</option>
+                      <option>Blue Flower</option>
+                      <option>Pumpkin</option>
+                      <option>Sunflower</option>
+                      <option>Strawberry</option>
+                      <option>Bamboo</option>
+                      <option>Dandelion</option>
+                      <option>Spider</option>
+                      <option>Clover</option>
+                      <option>Mushroom</option>
+                      <option>Rose</option>
+                      <option>Cactus</option>
+                      <option>Coconut</option>
+                      <option>Mountain Top</option>
+                      <option>Pepper</option>
+                      <option>Pineapple</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-secondary btn-small">Copy</button>
+                  <button class="btn btn-secondary btn-small">Paste</button>
+                </div>
+
+                <div class="field-sections">
+                  <div class="field-section">
+                    <div class="field-section-title">Gathering</div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="drift1" checked>
+                      <label for="drift1" class="checkbox-label">Drift Comp</label>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Pattern</div>
+                    <div class="control-group">
+                      <div class="control-label">Pattern Shape</div>
+                      <select class="form-select">
+                        <option>Diamonds</option>
+                        <option>e_lol</option>
+                        <option>Snake</option>
+                        <option>Squares</option>
+                        <option>Stationary</option>
+                        <option>SuperCat</option>
+                      </select>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Length</div>
+                      <input type="number" class="number-input" value="3" min="1" max="9">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Width</div>
+                      <input type="number" class="number-input" value="2" min="1" max="9">
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="shift1">
+                      <label for="shift1" class="checkbox-label">Gather w/Shift-Lock</label>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                      <span class="control-label" style="margin: 0;">Invert:</span>
+                      <div class="checkbox-wrapper" style="flex: 1;">
+                        <input type="checkbox" id="invertFB1">
+                        <label for="invertFB1" class="checkbox-label">F/B</label>
+                      </div>
+                      <div class="checkbox-wrapper" style="flex: 1;">
+                        <input type="checkbox" id="invertLR1">
+                        <label for="invertLR1" class="checkbox-label">L/R</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Until</div>
+                    <div class="control-group">
+                      <div class="control-label">Mins</div>
+                      <input type="number" class="number-input" value="30" min="0">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Pack %</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">-</button>
+                        <input type="text" class="number-input" value="95" readonly>
+                        <button class="btn btn-secondary btn-icon">+</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Rotate Camera</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Left" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Times</div>
+                      <input type="number" class="number-input" value="2" min="1" max="4">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">To Hive By</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Walk" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Sprinkler</div>
+                    <div class="control-group">
+                      <div class="control-label">Start Location</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Center" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Distance</div>
+                      <input type="number" class="number-input" value="10" min="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-item">
+                <div class="field-item-header">
+                  <div class="field-number">2</div>
+                  <div class="form-group" style="flex: 2;">
+                    <select class="form-select" id="field2">
+                      <option>None</option>
+                      <option>Pine Tree</option>
+                      <option selected>Blue Flower</option>
+                      <option>Pumpkin</option>
+                      <option>Sunflower</option>
+                      <option>Strawberry</option>
+                      <option>Bamboo</option>
+                      <option>Dandelion</option>
+                      <option>Spider</option>
+                      <option>Clover</option>
+                      <option>Mushroom</option>
+                      <option>Rose</option>
+                      <option>Cactus</option>
+                      <option>Coconut</option>
+                      <option>Mountain Top</option>
+                      <option>Pepper</option>
+                      <option>Pineapple</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-secondary btn-small">Copy</button>
+                  <button class="btn btn-secondary btn-small">Paste</button>
+                </div>
+
+                <div class="field-sections">
+                  <div class="field-section">
+                    <div class="field-section-title">Gathering</div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="drift2">
+                      <label for="drift2" class="checkbox-label">Drift Comp</label>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Pattern</div>
+                    <div class="control-group">
+                      <div class="control-label">Pattern Shape</div>
+                      <select class="form-select">
+                        <option selected>e_lol</option>
+                        <option>Diamonds</option>
+                        <option>Snake</option>
+                        <option>Squares</option>
+                        <option>Stationary</option>
+                        <option>SuperCat</option>
+                      </select>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Length</div>
+                      <input type="number" class="number-input" value="7" min="1" max="9">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Width</div>
+                      <input type="number" class="number-input" value="2" min="1" max="9">
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="shift2">
+                      <label for="shift2" class="checkbox-label">Gather w/Shift-Lock</label>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                      <span class="control-label" style="margin: 0;">Invert:</span>
+                      <div class="checkbox-wrapper" style="flex: 1;">
+                        <input type="checkbox" id="invertFB2">
+                        <label for="invertFB2" class="checkbox-label">F/B</label>
+                      </div>
+                      <div class="checkbox-wrapper" style="flex: 1;">
+                        <input type="checkbox" id="invertLR2">
+                        <label for="invertLR2" class="checkbox-label">L/R</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Until</div>
+                    <div class="control-group">
+                      <div class="control-label">Mins</div>
+                      <input type="number" class="number-input" value="10" min="0">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Pack %</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">-</button>
+                        <input type="text" class="number-input" value="95" readonly>
+                        <button class="btn btn-secondary btn-icon">+</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Rotate Camera</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Right" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Times</div>
+                      <input type="number" class="number-input" value="2" min="1" max="4">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">To Hive By</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Walk" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Sprinkler</div>
+                    <div class="control-group">
+                      <div class="control-label">Start Location</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Upper Left" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Distance</div>
+                      <input type="number" class="number-input" value="3" min="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-item">
+                <div class="field-item-header">
+                  <div class="field-number">3</div>
+                  <div class="form-group" style="flex: 2;">
+                    <select class="form-select" id="field3">
+                      <option>None</option>
+                      <option>Pine Tree</option>
+                      <option>Blue Flower</option>
+                      <option selected>Pumpkin</option>
+                      <option>Sunflower</option>
+                      <option>Strawberry</option>
+                      <option>Bamboo</option>
+                      <option>Dandelion</option>
+                      <option>Spider</option>
+                      <option>Clover</option>
+                      <option>Mushroom</option>
+                      <option>Rose</option>
+                      <option>Cactus</option>
+                      <option>Coconut</option>
+                      <option>Mountain Top</option>
+                      <option>Pepper</option>
+                      <option>Pineapple</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-secondary btn-small">Copy</button>
+                  <button class="btn btn-secondary btn-small">Paste</button>
+                </div>
+
+                <div class="field-sections">
+                  <div class="field-section">
+                    <div class="field-section-title">Gathering</div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="drift3" checked>
+                      <label for="drift3" class="checkbox-label">Drift Comp</label>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Pattern</div>
+                    <div class="control-group">
+                      <div class="control-label">Pattern Shape</div>
+                      <select class="form-select">
+                        <option>Diamonds</option>
+                        <option>e_lol</option>
+                        <option>Snake</option>
+                        <option>Squares</option>
+                        <option>Stationary</option>
+                        <option selected>SuperCat</option>
+                      </select>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Length</div>
+                      <input type="number" class="number-input" value="5" min="1" max="9">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Width</div>
+                      <input type="number" class="number-input" value="2" min="1" max="9">
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="shift3">
+                      <label for="shift3" class="checkbox-label">Gather w/Shift-Lock</label>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                      <span class="control-label" style="margin: 0;">Invert:</span>
+                      <div class="checkbox-wrapper" style="flex: 1;">
+                        <input type="checkbox" id="invertFB3" checked>
+                        <label for="invertFB3" class="checkbox-label">F/B</label>
+                      </div>
+                      <div class="checkbox-wrapper" style="flex: 1;">
+                        <input type="checkbox" id="invertLR3" checked>
+                        <label for="invertLR3" class="checkbox-label">L/R</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Until</div>
+                    <div class="control-group">
+                      <div class="control-label">Mins</div>
+                      <input type="number" class="number-input" value="10" min="0">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Pack %</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">-</button>
+                        <input type="text" class="number-input" value="95" readonly>
+                        <button class="btn btn-secondary btn-icon">+</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Rotate Camera</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Right" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Times</div>
+                      <input type="number" class="number-input" value="2" min="1" max="4">
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">To Hive By</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Walk" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-section">
+                    <div class="field-section-title">Sprinkler</div>
+                    <div class="control-group">
+                      <div class="control-label">Start Location</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="number-input" value="Right" readonly>
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="control-label">Distance</div>
+                      <input type="number" class="number-input" value="8" min="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="collect-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Collect/Kill Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="boost-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Boost Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="quests-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Quests Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="planters-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Planters Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="status-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Status Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="settings-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Settings Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="misc-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Misc Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+
+          <div id="credits-tab" class="tab-content">
+            <div class="section-card">
+              <div class="section-title">Credits Tab</div>
+              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-bar">
+          <div class="control-section">
+            <span class="status-label">Current Field:</span>
+            <span class="status-value" id="currentField">Pine Tree</span>
+          </div>
+          <div class="control-section">
+            <span class="status-label">Status:</span>
+            <span class="status-value" id="status">Startup: UI</span>
+          </div>
+          <div class="control-section" style="margin-left: auto;">
+            <button class="btn btn-start" id="startBtn">▶ Start (F1)</button>
+            <button class="btn btn-pause" id="pauseBtn">⏸ Pause (F2)</button>
+            <button class="btn btn-stop" id="stopBtn">⏹ Stop (F3)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
