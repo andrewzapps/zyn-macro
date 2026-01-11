@@ -7,6 +7,18 @@ const ini = require('ini');
 let mainWindow;
 let ahkProcess;
 
+function getResourcePath()
+{
+  if (app.isPackaged)
+  {
+    return process.resourcesPath;
+  }
+  else
+  {
+    return path.join(__dirname, '..');
+  }
+}
+
 function createWindow()
 {
   mainWindow = new BrowserWindow(
@@ -53,8 +65,9 @@ app.on('window-all-closed', () =>
 
 ipcMain.on('start-macro', (event, data) =>
 {
-  const ahkExePath = path.join(__dirname, '..', 'submacros', 'AutoHotkey32.exe');
-  const ahkScriptPath = path.join(__dirname, '..', 'submacros', 'natro_macro.ahk');
+  const resourcePath = getResourcePath();
+  const ahkExePath = path.join(resourcePath, 'submacros', 'AutoHotkey32.exe');
+  const ahkScriptPath = path.join(resourcePath, 'submacros', 'natro_macro.ahk');
   
   ahkProcess = spawn(ahkExePath, [ahkScriptPath]);
   
@@ -91,10 +104,10 @@ ipcMain.on('pause-macro', (event) =>
   event.reply('macro-paused', { success: true });
 });
 
-const configPath = path.join(__dirname, '..', 'settings', 'nm_config.ini');
-
 ipcMain.handle('load-config', async () =>
 {
+  const resourcePath = getResourcePath();
+  const configPath = path.join(resourcePath, 'settings', 'nm_config.ini');
   try
   {
     if (fs.existsSync(configPath))
@@ -113,6 +126,8 @@ ipcMain.handle('load-config', async () =>
 
 ipcMain.handle('save-config', async (event, section, key, value) =>
 {
+  const resourcePath = getResourcePath();
+  const configPath = path.join(resourcePath, 'settings', 'nm_config.ini');
   try
   {
     let config = {};

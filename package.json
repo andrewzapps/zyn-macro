@@ -38,16 +38,34 @@
     },
     "files": [
       "electron/**/*",
-      "lib/**/*",
-      "paths/**/*",
-      "patterns/**/*",
-      "submacros/**/*",
-      "nm_image_assets/**/*",
-      "settings/**/*",
       "node_modules/**/*",
       "package.json"
     ],
-    "extraFiles": [
+    "extraResources": [
+      {
+        "from": "lib",
+        "to": "lib"
+      },
+      {
+        "from": "paths",
+        "to": "paths"
+      },
+      {
+        "from": "patterns",
+        "to": "patterns"
+      },
+      {
+        "from": "submacros",
+        "to": "submacros"
+      },
+      {
+        "from": "nm_image_assets",
+        "to": "nm_image_assets"
+      },
+      {
+        "from": "settings",
+        "to": "settings"
+      },
       {
         "from": "START.bat",
         "to": "START.bat"

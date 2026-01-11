@@ -14,7 +14,7 @@ revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro)
 
 ### Installation
 
-1. **Download** `Zyn-Macro-v1.0.0-Standalone-Windows.zip` from [Releases](https://github.com/andrewzapps/zyn-macro/releases)
+1. **Download** `zyn-macro-v1.0.0.zip` from [Releases](https://github.com/andrewzapps/zyn-macro/releases)
 2. **Extract** to any folder (e.g., `C:\Games\ZynMacro\`)
 3. **Double-click** `Zyn Macro.exe`
 4. **Done!**
@@ -49,12 +49,11 @@ Complete control over GUI, hive, reconnect, and character settings
 
 ### For Users (No Technical Knowledge Required!)
 
-1. **Download** `Zyn-Macro-v1.0.0-Standalone-Windows.zip`
+1. **Download** `zyn-macro-v1.0.0.zip`
 2. **Extract** the ZIP anywhere you want
 3. **Open** the `win-unpacked` folder
-4. **Double-click** `Zyn Macro.exe`
-5. **Configure** your settings in the modern UI
-6. **Use** `START.bat` to run the AutoHotkey macro
+4. **Double-click** `Zyn Macro.exe` to configure settings
+5. **Double-click** `START_MACRO.bat` to run the macro
 
 **That's it!** No programming required, no npm, no Node.js, no complicated setup!
 
@@ -77,6 +76,7 @@ npm run build:zip
 
 ## Project Structure
 
+### Development Structure
 ```
 zyn-macro/
 ├── electron/          # Electron UI files
@@ -87,14 +87,26 @@ zyn-macro/
 │   ├── app.js         # Frontend logic
 │   └── zyn2.png       # App icon
 ├── submacros/         # AutoHotkey scripts
-│   └── natro_macro.ahk  # Main AHK macro
-├── lib/               # Libraries (Gdip, JSON, etc.)
+├── lib/               # Libraries
 ├── paths/             # Navigation paths
 ├── patterns/          # Gather patterns
-├── nm_image_assets/   # Image recognition assets
-├── settings/          # Configuration files
-│   └── nm_config.ini  # Main config (synced with UI)
-└── START.bat          # Launch script
+├── nm_image_assets/   # Image assets
+└── settings/          # Configuration files
+```
+
+### Packaged Build Structure
+```
+win-unpacked/
+├── Zyn Macro.exe      # Main application
+├── START_MACRO.bat    # Macro launcher
+├── INSTALL.txt        # Installation guide
+└── resources/         # All macro files
+    ├── submacros/     # AutoHotkey scripts
+    ├── settings/      # nm_config.ini
+    ├── lib/           # Libraries
+    ├── paths/         # Navigation paths
+    ├── patterns/      # Gather patterns
+    └── nm_image_assets/  # Images
 ```
 
 ## Usage
@@ -105,15 +117,15 @@ Just **double-click** `Zyn Macro.exe` - that's it!
 (Developers can use `npm start`)
 
 ### Running the Macro
-Inside the extracted folder, double-click `START.bat`
+Inside the extracted `win-unpacked` folder, double-click `START_MACRO.bat`
 
-Or run directly:
+Or run directly from the resources folder:
 ```bash
-submacros/AutoHotkey64.exe submacros/natro_macro.ahk
+resources/submacros/AutoHotkey32.exe resources/submacros/natro_macro.ahk
 ```
 
 ### Configuration
-- All settings are saved to `settings/nm_config.ini`
+- All settings are saved to `resources/settings/nm_config.ini`
 - Changes in the UI are saved instantly
 - The macro reads these settings on startup
 
