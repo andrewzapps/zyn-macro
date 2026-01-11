@@ -2,21 +2,21 @@
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.1-green.svg)
+![Version](https://img.shields.io/badge/version-1.0.2-green.svg)
 ![Downloads](https://img.shields.io/github/downloads/andrewzapps/zyn-macro/latest/total?label=downloads&color=success)
 
 revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro) 
 
 ### Latest Release
 
-**[Download Zyn Macro v1.0.0 (139 MB)](https://github.com/andrewzapps/zyn-macro/releases/latest)**
+**[Download Zyn Macro v1.0.2 (139 MB)](https://github.com/andrewzapps/zyn-macro/releases/latest)**
 
 ![GitHub all releases](https://img.shields.io/github/downloads/andrewzapps/zyn-macro/total?label=Total%20Downloads&style=for-the-badge&logo=github)
 
 
 ### Installation
 
-1. **Download** `zyn-macro-v1.0.0.zip` from [Releases](https://github.com/andrewzapps/zyn-macro/releases)
+1. **Download** `zyn-macro-v1.0.2.zip` from [Releases](https://github.com/andrewzapps/zyn-macro/releases)
 2. **Extract** to any folder (e.g., `C:\Games\ZynMacro\`)
 3. **Double-click** `Zyn Macro.exe`
 4. **Done!**

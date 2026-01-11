@@ -1,6 +1,6 @@
-#NoEnv
+#Requires AutoHotkey v2.0
 #SingleInstance Force
-DetectHiddenWindows On
+DetectHiddenWindows 1
 
 scriptTitle := "Natro Macro (Zyn UI Mode - Background)"
 hwnd := WinExist(scriptTitle " ahk_class AutoHotkey")

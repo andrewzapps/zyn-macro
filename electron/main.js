@@ -158,7 +158,7 @@ ipcMain.handle('start-macro', async (event, data) =>
           const pid = ahkProcess.pid;
           const helperScript = `#Requires AutoHotkey v2.0
 #SingleInstance Force
-DetectHiddenWindows On
+DetectHiddenWindows 1
 SetTitleMatchMode 2
 
 pid := ${pid}
