@@ -9,10 +9,10 @@ function createWindow()
 {
   mainWindow = new BrowserWindow(
   {
-    width: 1400,
-    height: 900,
-    minWidth: 1200,
-    minHeight: 800,
+    width: 1100,
+    height: 750,
+    minWidth: 1000,
+    minHeight: 700,
     backgroundColor: '#1e1e1e',
     icon: path.join(__dirname, 'zyn2.png'),
     webPreferences:
