@@ -65,25 +65,46 @@ app.on('window-all-closed', () =>
 
 ipcMain.on('start-macro', (event, data) =>
 {
+  if (ahkProcess)
+  {
+    event.reply('macro-error', { error: 'Macro is already running' });
+    return;
+  }
+
   const resourcePath = getResourcePath();
   const ahkExePath = path.join(resourcePath, 'submacros', 'AutoHotkey32.exe');
   const ahkScriptPath = path.join(resourcePath, 'submacros', 'natro_macro.ahk');
   
-  ahkProcess = spawn(ahkExePath, [ahkScriptPath]);
+  ahkProcess = spawn(ahkExePath, [ahkScriptPath, '/zynui']);
   
   ahkProcess.stdout.on('data', (data) =>
   {
-    event.reply('macro-status', { status: data.toString() });
+    const message = data.toString().trim();
+    if (message)
+    {
+      event.reply('macro-status', { status: message });
+    }
   });
   
   ahkProcess.stderr.on('data', (data) =>
   {
-    event.reply('macro-error', { error: data.toString() });
+    const error = data.toString().trim();
+    if (error)
+    {
+      event.reply('macro-error', { error });
+    }
   });
   
   ahkProcess.on('close', (code) =>
   {
+    ahkProcess = null;
     event.reply('macro-stopped', { code });
+  });
+  
+  ahkProcess.on('error', (err) =>
+  {
+    event.reply('macro-error', { error: `Failed to start macro: ${err.message}` });
+    ahkProcess = null;
   });
   
   event.reply('macro-started', { success: true });

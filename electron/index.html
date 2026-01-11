@@ -1389,6 +1389,28 @@
           </div>
 
           <div id="status-tab" class="tab-content">
+            <div class="section-card" style="margin-bottom: 20px;">
+              <div class="section-title">MACRO CONTROL</div>
+              <div class="macro-controls">
+                <button class="btn btn-primary btn-large" id="startMacroBtn">
+                  <i data-lucide="play" style="width: 20px; height: 20px;"></i>
+                  Start Macro
+                </button>
+                <button class="btn btn-secondary btn-large" id="pauseMacroBtn" disabled>
+                  <i data-lucide="pause" style="width: 20px; height: 20px;"></i>
+                  Pause
+                </button>
+                <button class="btn btn-danger btn-large" id="stopMacroBtn" disabled>
+                  <i data-lucide="stop-circle" style="width: 20px; height: 20px;"></i>
+                  Stop
+                </button>
+              </div>
+              <div class="macro-status" id="macroStatus">
+                <span class="status-indicator status-stopped"></span>
+                <span class="status-text">Macro Stopped</span>
+              </div>
+            </div>
+
             <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
               <div class="section-card">
                 <div class="section-title-row">
@@ -1398,10 +1420,8 @@
                     <label for="statusLogReverse" class="checkbox-label">Reverse Order</label>
                   </div>
                 </div>
-                <div class="status-log-container">
-                  <div class="status-log-entry">[00:00:00] Macro started</div>
-                  <div class="status-log-entry">[00:00:05] Initializing...</div>
-                  <div class="status-log-entry">[00:00:10] Ready</div>
+                <div class="status-log-container" id="statusLogContainer">
+                  <div class="status-log-entry">[Ready] Waiting for macro to start...</div>
                 </div>
               </div>
 

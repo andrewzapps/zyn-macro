@@ -33,6 +33,16 @@ You should have received a copy of the license along with Natro Macro. If not, p
 #Warn VarUnset, Off
 OnError (e, mode) => (mode = "Return") ? -1 : 0
 
+global ZynUIMode := 0
+for arg in A_Args
+{
+	if (arg = "/zynui")
+	{
+		ZynUIMode := 1
+		break
+	}
+}
+
 SetWorkingDir A_ScriptDir "\.."
 CoordMode "Mouse", "Screen"
 CoordMode "Pixel", "Screen"
@@ -2256,9 +2266,12 @@ nm_MajorUpdateHelp(*)
 ; CREATE GUI
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 OnExit(GetOut)
-MainGui := Gui((AlwaysOnTop ? "+AlwaysOnTop " : "") "+Border +OwnDialogs", "Natro Macro (Loading 0%)")
+MainGui := Gui((AlwaysOnTop ? "+AlwaysOnTop " : "") "+Border +OwnDialogs", ZynUIMode ? "Natro Macro (Zyn UI Mode)" : "Natro Macro (Loading 0%)")
 WinSetTransparent 255-floor(GuiTransparency*2.55), MainGui
-MainGui.Show("x" GuiX " y" GuiY " w490 h275")
+if (ZynUIMode)
+	MainGui.Show("x" GuiX " y" GuiY " w490 h275 Hide")
+else
+	MainGui.Show("x" GuiX " y" GuiY " w490 h275")
 SetLoadingProgress(percent) => MainGui.Title := "Natro Macro (Loading " Round(percent) "%)"
 MainGui.OnEvent("Close", (*) => ExitApp())
 MainGui.SetFont("s8 cDefault Norm", "Tahoma")
