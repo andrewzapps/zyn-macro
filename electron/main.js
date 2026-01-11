@@ -156,20 +156,17 @@ ipcMain.handle('start-macro', async (event, data) =>
           const tmpDir = os.tmpdir();
           const helperScriptPath = path.join(tmpDir, 'zyn_send_start.ahk');
           const pid = ahkProcess.pid;
-          const helperScript = `#NoEnv
+          const helperScript = `#Requires AutoHotkey v2.0
 #SingleInstance Force
 DetectHiddenWindows On
 SetTitleMatchMode 2
 
-hwnd := WinExist("ahk_pid ${pid}")
+pid := ${pid}
+hwnd := WinExist("ahk_pid " pid)
 if (!hwnd)
-{
     hwnd := WinExist("Natro Macro ahk_class AutoHotkey")
-}
 if (!hwnd)
-{
     hwnd := WinExist("Natro Macro (Zyn UI Mode - Background) ahk_class AutoHotkey")
-}
 
 if (hwnd)
 {
