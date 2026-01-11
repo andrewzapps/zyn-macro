@@ -942,6 +942,118 @@ function setupPlantersListeners()
   });
 }
 
+async function loadSettingsConfig()
+{
+  try
+  {
+    const result = await window.electronAPI.loadConfig();
+    
+    if (result.success && result.config && result.config.Settings)
+    {
+      const settingsConfig = result.config.Settings;
+      
+      const inputMapping = {
+        'guiTheme': 'GuiTheme',
+        'guiTransparency': 'GuiTransparency',
+        'hiveSlot': 'HiveSlot',
+        'hiveBees': 'HiveBees',
+        'moveSpeedNum': 'MoveSpeedNum',
+        'moveMethod': 'MoveMethod',
+        'sprinklerType': 'SprinklerType',
+        'convertBalloon': 'ConvertBalloon',
+        'convertMins': 'ConvertMins',
+        'convertDelay': 'ConvertDelay',
+        'privServer': 'PrivServer',
+        'reconnectMethod': 'ReconnectMethod',
+        'reconnectDelay': 'ReconnectDelay'
+      };
+      
+      Object.entries(inputMapping).forEach(([id, key]) =>
+      {
+        const input = document.getElementById(id);
+        if (input && settingsConfig[key] !== undefined)
+        {
+          input.value = settingsConfig[key];
+        }
+      });
+      
+      const checkboxMapping = {
+        'alwaysOnTop': 'AlwaysOnTop',
+        'newWalk': 'NewWalk',
+        'reconnectMessage': 'ReconnectMessage',
+        'publicFallback': 'PublicFallback'
+      };
+      
+      Object.entries(checkboxMapping).forEach(([id, key]) =>
+      {
+        const checkbox = document.getElementById(id);
+        if (checkbox && settingsConfig[key] !== undefined)
+        {
+          checkbox.checked = settingsConfig[key] === '1';
+        }
+      });
+      
+      console.log('Settings config loaded successfully');
+    }
+  }
+  catch (error)
+  {
+    console.error('Error loading settings config:', error);
+  }
+}
+
+function setupSettingsListeners()
+{
+  const inputMapping = {
+    'guiTheme': 'GuiTheme',
+    'guiTransparency': 'GuiTransparency',
+    'hiveSlot': 'HiveSlot',
+    'hiveBees': 'HiveBees',
+    'moveSpeedNum': 'MoveSpeedNum',
+    'moveMethod': 'MoveMethod',
+    'sprinklerType': 'SprinklerType',
+    'convertBalloon': 'ConvertBalloon',
+    'convertMins': 'ConvertMins',
+    'convertDelay': 'ConvertDelay',
+    'privServer': 'PrivServer',
+    'reconnectMethod': 'ReconnectMethod',
+    'reconnectDelay': 'ReconnectDelay'
+  };
+  
+  Object.entries(inputMapping).forEach(([id, key]) =>
+  {
+    const input = document.getElementById(id);
+    if (input)
+    {
+      input.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Settings', key, input.value);
+        console.log(`Saved ${key}:`, input.value);
+      });
+    }
+  });
+  
+  const checkboxMapping = {
+    'alwaysOnTop': 'AlwaysOnTop',
+    'newWalk': 'NewWalk',
+    'reconnectMessage': 'ReconnectMessage',
+    'publicFallback': 'PublicFallback'
+  };
+  
+  Object.entries(checkboxMapping).forEach(([id, key]) =>
+  {
+    const checkbox = document.getElementById(id);
+    if (checkbox)
+    {
+      checkbox.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Settings', key, checkbox.checked ? '1' : '0');
+        console.log(`Saved ${key}:`, checkbox.checked);
+      });
+    }
+  });
+}
+
 setupGatherFieldListeners();
 loadGatherConfig();
 
@@ -956,5 +1068,8 @@ loadQuestsConfig();
 
 setupPlantersListeners();
 loadPlantersConfig();
+
+setupSettingsListeners();
+loadSettingsConfig();
 
 lucide.createIcons();
