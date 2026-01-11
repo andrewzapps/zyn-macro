@@ -10,5 +10,8 @@ contextBridge.exposeInMainWorld('electronAPI',
   onMacroStopped: (callback) => ipcRenderer.on('macro-stopped', (event, data) => callback(data)),
   onMacroPaused: (callback) => ipcRenderer.on('macro-paused', (event, data) => callback(data)),
   onMacroStatus: (callback) => ipcRenderer.on('macro-status', (event, data) => callback(data)),
-  onMacroError: (callback) => ipcRenderer.on('macro-error', (event, data) => callback(data))
+  onMacroError: (callback) => ipcRenderer.on('macro-error', (event, data) => callback(data)),
+  
+  loadConfig: () => ipcRenderer.invoke('load-config'),
+  saveConfig: (section, key, value) => ipcRenderer.invoke('save-config', section, key, value)
 });

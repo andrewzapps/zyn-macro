@@ -331,4 +331,115 @@ document.querySelectorAll('.remove-field-btn').forEach(btn =>
   });
 });
 
+async function loadGatherConfig()
+{
+  try
+  {
+    const result = await window.electronAPI.loadConfig();
+    
+    if (result.success && result.config && result.config.Gather)
+    {
+      const gatherConfig = result.config.Gather;
+      
+      for (let i = 1; i <= 3; i++)
+      {
+        const fieldSelect = document.getElementById(`field${i}`);
+        if (fieldSelect && gatherConfig[`FieldName${i}`])
+        {
+          fieldSelect.value = gatherConfig[`FieldName${i}`];
+        }
+        
+        const driftCheck = document.getElementById(`drift${i}`);
+        if (driftCheck && gatherConfig[`FieldDriftCheck${i}`] !== undefined)
+        {
+          driftCheck.checked = gatherConfig[`FieldDriftCheck${i}`] === '1';
+        }
+        
+        const shiftCheck = document.getElementById(`shift${i}`);
+        if (shiftCheck && gatherConfig[`FieldPatternShift${i}`] !== undefined)
+        {
+          shiftCheck.checked = gatherConfig[`FieldPatternShift${i}`] === '1';
+        }
+        
+        const invertFB = document.getElementById(`invertFB${i}`);
+        if (invertFB && gatherConfig[`FieldPatternInvertFB${i}`] !== undefined)
+        {
+          invertFB.checked = gatherConfig[`FieldPatternInvertFB${i}`] === '1';
+        }
+        
+        const invertLR = document.getElementById(`invertLR${i}`);
+        if (invertLR && gatherConfig[`FieldPatternInvertLR${i}`] !== undefined)
+        {
+          invertLR.checked = gatherConfig[`FieldPatternInvertLR${i}`] === '1';
+        }
+      }
+      
+      console.log('Gather config loaded successfully');
+    }
+  }
+  catch (error)
+  {
+    console.error('Error loading gather config:', error);
+  }
+}
+
+function setupGatherFieldListeners()
+{
+  for (let i = 1; i <= 7; i++)
+  {
+    const fieldSelect = document.getElementById(`field${i}`);
+    if (fieldSelect)
+    {
+      fieldSelect.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Gather', `FieldName${i}`, fieldSelect.value);
+        console.log(`Saved FieldName${i}:`, fieldSelect.value);
+      });
+    }
+    
+    const driftCheck = document.getElementById(`drift${i}`);
+    if (driftCheck)
+    {
+      driftCheck.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Gather', `FieldDriftCheck${i}`, driftCheck.checked ? '1' : '0');
+        console.log(`Saved FieldDriftCheck${i}:`, driftCheck.checked);
+      });
+    }
+    
+    const shiftCheck = document.getElementById(`shift${i}`);
+    if (shiftCheck)
+    {
+      shiftCheck.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Gather', `FieldPatternShift${i}`, shiftCheck.checked ? '1' : '0');
+        console.log(`Saved FieldPatternShift${i}:`, shiftCheck.checked);
+      });
+    }
+    
+    const invertFB = document.getElementById(`invertFB${i}`);
+    if (invertFB)
+    {
+      invertFB.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Gather', `FieldPatternInvertFB${i}`, invertFB.checked ? '1' : '0');
+        console.log(`Saved FieldPatternInvertFB${i}:`, invertFB.checked);
+      });
+    }
+    
+    const invertLR = document.getElementById(`invertLR${i}`);
+    if (invertLR)
+    {
+      invertLR.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Gather', `FieldPatternInvertLR${i}`, invertLR.checked ? '1' : '0');
+        console.log(`Saved FieldPatternInvertLR${i}:`, invertLR.checked);
+      });
+    }
+  }
+}
+
+setupGatherFieldListeners();
+loadGatherConfig();
+
 lucide.createIcons();

@@ -23,5 +23,8 @@
   "homepage": "https://github.com/andrewzapps/zyn-macro#readme",
   "devDependencies": {
     "electron": "^39.2.7"
+  },
+  "dependencies": {
+    "ini": "^6.0.0"
   }
 }
