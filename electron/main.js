@@ -148,40 +148,46 @@ ipcMain.handle('start-macro', async (event, data) =>
     
     setTimeout(() =>
     {
-      if (ahkProcess && !ahkProcess.killed)
+      if (ahkProcess && !ahkProcess.killed && ahkProcess.pid)
       {
         try
         {
           const os = require('os');
           const tmpDir = os.tmpdir();
           const helperScriptPath = path.join(tmpDir, 'zyn_send_start.ahk');
+          const pid = ahkProcess.pid;
           const helperScript = `#NoEnv
 #SingleInstance Force
 DetectHiddenWindows On
+SetTitleMatchMode 2
 
-scriptTitle := "Natro Macro (Zyn UI Mode - Background)"
-hwnd := WinExist(scriptTitle " ahk_class AutoHotkey")
+hwnd := WinExist("ahk_pid ${pid}")
+if (!hwnd)
+{
+    hwnd := WinExist("Natro Macro ahk_class AutoHotkey")
+}
+if (!hwnd)
+{
+    hwnd := WinExist("Natro Macro (Zyn UI Mode - Background) ahk_class AutoHotkey")
+}
 
 if (hwnd)
 {
     PostMessage 0x5550, 1, 0, , "ahk_id " hwnd
-    ExitApp
+    ExitApp 0
 }
-else
-{
-    ExitApp 1
-}`;
+ExitApp 1`;
           
           fs.writeFileSync(helperScriptPath, helperScript, 'utf8');
           
           const { exec } = require('child_process');
-          exec(`"${ahkExePath}" "${helperScriptPath}"`, (error, stdout, stderr) =>
+          exec(`"${ahkExePath}" "${helperScriptPath}"`, { timeout: 5000 }, (error, stdout, stderr) =>
           {
             try { fs.unlinkSync(helperScriptPath); } catch(e) {}
             
             if (error)
             {
-              console.log('Could not send start message automatically. User can press F1.');
+              console.log('Could not send start message:', error.message);
               if (mainWindow)
               {
                 mainWindow.webContents.send('macro-status', { status: 'AHK process running. Press F1 to start the macro.' });
@@ -206,7 +212,7 @@ else
           }
         }
       }
-    }, 2000);
+    }, 3000);
     
     if (mainWindow)
     {
