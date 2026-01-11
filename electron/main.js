@@ -83,6 +83,14 @@ ipcMain.handle('start-macro', async (event, data) =>
     console.log('Spawning AHK process:', ahkExePath);
     console.log('Script path:', ahkScriptPath);
     console.log('Working directory:', workingDir);
+    console.log('Arguments:', ['1', '/zynui']);
+    
+    if (!ahkProcess || !ahkProcess.pid)
+    {
+      throw new Error('Failed to spawn AHK process - process object is invalid');
+    }
+    
+    console.log('AHK process spawned with PID:', ahkProcess.pid);
     
     ahkProcess.stdout.on('data', (data) =>
     {
@@ -104,12 +112,29 @@ ipcMain.handle('start-macro', async (event, data) =>
     
     ahkProcess.on('close', (code) =>
     {
+      console.log('AHK process closed with code:', code);
       ahkProcess = null;
       if (mainWindow)
       {
         mainWindow.webContents.send('macro-stopped', { code });
       }
     });
+    
+    setTimeout(() =>
+    {
+      if (ahkProcess && ahkProcess.killed)
+      {
+        console.error('AHK process was killed immediately after spawn');
+        if (mainWindow)
+        {
+          mainWindow.webContents.send('macro-error', { error: 'AHK process exited immediately. Check if AutoHotkey32.exe exists and is not blocked by antivirus.' });
+        }
+      }
+      else if (ahkProcess && !ahkProcess.killed)
+      {
+        console.log('AHK process is running successfully');
+      }
+    }, 1000);
     
     ahkProcess.on('error', (err) =>
     {
@@ -120,6 +145,68 @@ ipcMain.handle('start-macro', async (event, data) =>
       }
       ahkProcess = null;
     });
+    
+    setTimeout(() =>
+    {
+      if (ahkProcess && !ahkProcess.killed)
+      {
+        try
+        {
+          const os = require('os');
+          const tmpDir = os.tmpdir();
+          const helperScriptPath = path.join(tmpDir, 'zyn_send_start.ahk');
+          const helperScript = `#NoEnv
+#SingleInstance Force
+DetectHiddenWindows On
+
+scriptTitle := "Natro Macro (Zyn UI Mode - Background)"
+hwnd := WinExist(scriptTitle " ahk_class AutoHotkey")
+
+if (hwnd)
+{
+    PostMessage 0x5550, 1, 0, , "ahk_id " hwnd
+    ExitApp
+}
+else
+{
+    ExitApp 1
+}`;
+          
+          fs.writeFileSync(helperScriptPath, helperScript, 'utf8');
+          
+          const { exec } = require('child_process');
+          exec(`"${ahkExePath}" "${helperScriptPath}"`, (error, stdout, stderr) =>
+          {
+            try { fs.unlinkSync(helperScriptPath); } catch(e) {}
+            
+            if (error)
+            {
+              console.log('Could not send start message automatically. User can press F1.');
+              if (mainWindow)
+              {
+                mainWindow.webContents.send('macro-status', { status: 'AHK process running. Press F1 to start the macro.' });
+              }
+            }
+            else
+            {
+              console.log('Successfully sent start command to AHK process');
+              if (mainWindow)
+              {
+                mainWindow.webContents.send('macro-status', { status: 'Macro start command sent!' });
+              }
+            }
+          });
+        }
+        catch (err)
+        {
+          console.error('Error sending start message:', err);
+          if (mainWindow)
+          {
+            mainWindow.webContents.send('macro-status', { status: 'AHK process running. Press F1 to start.' });
+          }
+        }
+      }
+    }, 2000);
     
     if (mainWindow)
     {
