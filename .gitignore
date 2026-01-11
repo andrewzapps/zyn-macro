@@ -53,3 +53,6 @@ lib-cov
 /coverage
 /test/test-apps/*/dist
 MMScreenshots/*
+dist/
+*.zip
+Zyn-Macro-*.zip
