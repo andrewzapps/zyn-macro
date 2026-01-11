@@ -74,10 +74,15 @@ ipcMain.handle('start-macro', async (event, data) =>
   const resourcePath = getResourcePath();
   const ahkExePath = path.join(resourcePath, 'submacros', 'AutoHotkey32.exe');
   const ahkScriptPath = path.join(resourcePath, 'submacros', 'natro_macro.ahk');
+  const workingDir = resourcePath;
   
   try
   {
-    ahkProcess = spawn(ahkExePath, [ahkScriptPath, '/zynui']);
+    ahkProcess = spawn(ahkExePath, [ahkScriptPath, '/zynui'], { cwd: workingDir });
+    
+    console.log('Spawning AHK process:', ahkExePath);
+    console.log('Script path:', ahkScriptPath);
+    console.log('Working directory:', workingDir);
     
     ahkProcess.stdout.on('data', (data) =>
     {
@@ -108,6 +113,7 @@ ipcMain.handle('start-macro', async (event, data) =>
     
     ahkProcess.on('error', (err) =>
     {
+      console.error('AHK process error:', err);
       if (mainWindow)
       {
         mainWindow.webContents.send('macro-error', { error: `Failed to start macro: ${err.message}` });
