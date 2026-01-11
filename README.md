@@ -3,12 +3,15 @@
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![Downloads](https://img.shields.io/github/downloads/andrewzapps/zyn-macro/total?label=downloads&color=success)
 
 revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro) 
 
 ### Latest Release
 
 **[Download Zyn Macro v1.0.0 (139 MB)](https://github.com/andrewzapps/zyn-macro/releases/latest)**
+
+![GitHub all releases](https://img.shields.io/github/downloads/andrewzapps/zyn-macro/total?label=Total%20Downloads&style=for-the-badge)
 
 ### Installation
 
