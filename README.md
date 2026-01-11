@@ -4,29 +4,20 @@
 ![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
-A modern, dark-themed Electron UI redesign for [Natro Macro](https://github.com/NatroTeam/NatroMacro) - the powerful AutoHotkey automation tool for Bee Swarm Simulator.
+revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro) 
 
-## ✨ Features
-
-- 🎨 **Modern Dark UI** - Sleek, professional interface inspired by Cursor IDE
-- 🔄 **Full Backend Integration** - Syncs with original Natro Macro configuration
-- ⚡ **Real-time Config Sync** - All settings save instantly to `nm_config.ini`
-- 📱 **Intuitive Layout** - Clean tabs with icons (Lucide Icons)
-- 🎯 **All Original Features** - Complete 1:1 functionality with enhanced UX
-- 🔧 **Dynamic UI** - Context-aware settings (Planters mode, sub-tabs, etc.)
-
-## 📥 Download
+## Download
 
 ### Latest Release
 
-**[⬇️ Download Zyn Macro v1.0.0 (139 MB)](https://github.com/andrewzapps/zyn-macro/releases/latest)**
+**[Download Zyn Macro v1.0.0 (139 MB)](https://github.com/andrewzapps/zyn-macro/releases/latest)**
 
 ### Installation (Super Easy!)
 
 1. **Download** `Zyn-Macro-v1.0.0-Standalone-Windows.zip` from [Releases](https://github.com/andrewzapps/zyn-macro/releases)
 2. **Extract** to any folder (e.g., `C:\Games\ZynMacro\`)
 3. **Double-click** `Zyn Macro.exe`
-4. **Done!** ✅
+4. **Done!**
 
 **No installation, no dependencies, no npm commands needed!** Just extract and run!
 
@@ -37,7 +28,7 @@ A modern, dark-themed Electron UI redesign for [Natro Macro](https://github.com/
 - **Disk Space:** ~300 MB after extraction
 - **Prerequisites:** None! Everything is included!
 
-## 🖼️ Screenshots
+## Screenshots
 
 ### Gather Tab
 Clean field rotation setup with dynamic add/remove fields
@@ -54,7 +45,7 @@ Dynamic mode-based UI (OFF/Manual/Planters+)
 ### Settings Tab
 Complete control over GUI, hive, reconnect, and character settings
 
-## 🚀 Quick Start
+## Quick Start
 
 ### For Users (No Technical Knowledge Required!)
 
@@ -84,7 +75,7 @@ npm start
 npm run build:zip
 ```
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 zyn-macro/
@@ -106,7 +97,7 @@ zyn-macro/
 └── START.bat          # Launch script
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Launching the UI
 Just **double-click** `Zyn Macro.exe` - that's it!
@@ -127,9 +118,9 @@ submacros/AutoHotkey64.exe submacros/natro_macro.ahk
 - The macro reads these settings on startup
 - **No coding required!** Everything is point-and-click
 
-## 🔧 Features Overview
+## Features Overview
 
-### ✅ Synced Tabs
+### Synced Tabs
 - **Gather** - Field rotation, patterns, drift compensation, sprinklers
 - **Collect/Kill** - Dispensers, memory match, blender, beesmas, bug run, bosses
 - **Boost** - Field boosters, hotbar slots, stickers
@@ -137,7 +128,7 @@ submacros/AutoHotkey64.exe submacros/natro_macro.ahk
 - **Planters** - Dynamic mode (OFF/Manual/+), nectar priority, harvest controls
 - **Settings** - GUI, hive, reconnect, character configuration
 
-### 🎨 UI Improvements
+### UI Improvements
 - Dark theme with modern aesthetics
 - Icon-based navigation (Lucide Icons)
 - Context-aware settings visibility
@@ -145,7 +136,7 @@ submacros/AutoHotkey64.exe submacros/natro_macro.ahk
 - Sub-tabs for better organization
 - Responsive layout
 
-## 📜 License
+## License
 
 This project is licensed under **GPL-3.0** (inherited from Natro Macro).
 
@@ -155,7 +146,7 @@ This project is licensed under **GPL-3.0** (inherited from Natro Macro).
 - **UI Redesign:** [andrewzapps](https://github.com/andrewzapps)
 - **Game:** [Bee Swarm Simulator](https://www.roblox.com/games/1537690962/Bee-Swarm-Simulator) by Onett
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -165,7 +156,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 🐛 Bug Reports
+## Bug Reports
 
 Found a bug? Please open an [issue](https://github.com/andrewzapps/zyn-macro/issues) with:
 - Description of the bug
@@ -174,15 +165,15 @@ Found a bug? Please open an [issue](https://github.com/andrewzapps/zyn-macro/iss
 - Screenshots (if applicable)
 - Your system info (OS, Node.js version)
 
-## ⭐ Support
+## Support
 
 If you find this project useful, please consider:
-- ⭐ Starring the repository
-- 🍴 Forking to create your own version
-- 📢 Sharing with friends who play Bee Swarm Simulator
-- 🐛 Reporting bugs to help improve the project
+- Starring the repository
+- Forking to create your own version
+- Sharing with friends who play Bee Swarm Simulator
+- Reporting bugs to help improve the project
 
-## 📞 Contact
+## Contact
 
 - **GitHub:** [@andrewzapps](https://github.com/andrewzapps)
 - **Repository:** [zyn-macro](https://github.com/andrewzapps/zyn-macro)
@@ -190,6 +181,6 @@ If you find this project useful, please consider:
 
 ---
 
-Made with ❤️ for the Bee Swarm Simulator community
+Made for the Bee Swarm Simulator community
 
 **Note:** This is a UI redesign of Natro Macro. All core automation functionality is provided by the original Natro Macro backend.
