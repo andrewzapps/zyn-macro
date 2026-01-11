@@ -591,3 +591,169 @@ body
   align-items: center;
   gap: 10px;
 }
+
+.quest-grid
+{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.quest-settings
+{
+  grid-column: 1 / -1;
+}
+
+.quest-progress
+{
+  margin-top: 15px;
+  padding: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-height: 60px;
+}
+
+.progress-text
+{
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.progress-status
+{
+  font-size: 12px;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.planter-mode-selector
+{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.mode-slider
+{
+  width: 300px;
+  text-align: center;
+}
+
+.slider
+{
+  width: 100%;
+  height: 8px;
+  background: var(--bg-secondary);
+  outline: none;
+  border-radius: 4px;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb
+{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider::-moz-range-thumb
+{
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+.mode-labels
+{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.planter-content
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.planter-left-section,
+.planter-right-section
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.nectar-priority-table
+{
+  margin-top: 15px;
+}
+
+.table-header
+{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.table-row
+{
+  display: grid;
+  grid-template-columns: 20px 1fr 60px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.row-num
+{
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.harvest-controls
+{
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+.field-zones
+{
+  margin-top: 15px;
+}
+
+.zone-header
+{
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 15px 0 8px 0;
+  text-align: center;
+}
+
+.zone-header:first-child
+{
+  margin-top: 10px;
+}
+
+.planter-options
+{
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}

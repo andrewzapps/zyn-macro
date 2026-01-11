@@ -965,16 +965,391 @@
           </div>
 
           <div id="quests-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Quests Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="quest-grid">
+              <div class="section-card">
+                <div class="section-title">POLAR BEAR</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="polarQuestCheck" checked>
+                  <label for="polarQuestCheck" class="checkbox-label">Enable</label>
+                </div>
+                <div class="checkbox-wrapper" style="margin-top: 8px;">
+                  <input type="checkbox" id="polarQuestGatherInterruptCheck" checked>
+                  <label for="polarQuestGatherInterruptCheck" class="checkbox-label">Allow Gather Interrupt</label>
+                </div>
+                <div class="quest-progress">
+                  <div class="progress-text">Quest Progress:</div>
+                  <div class="progress-status">Not Started</div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">BLACK BEAR</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="blackQuestCheck" checked>
+                  <label for="blackQuestCheck" class="checkbox-label">Enable</label>
+                </div>
+                <div class="quest-progress">
+                  <div class="progress-text">Quest Progress:</div>
+                  <div class="progress-status">Not Started</div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">BUCKO BEE</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="buckoQuestCheck" checked>
+                  <label for="buckoQuestCheck" class="checkbox-label">Enable</label>
+                </div>
+                <div class="checkbox-wrapper" style="margin-top: 8px;">
+                  <input type="checkbox" id="buckoQuestGatherInterruptCheck" checked>
+                  <label for="buckoQuestGatherInterruptCheck" class="checkbox-label">Allow Gather Interrupt</label>
+                </div>
+                <div class="quest-progress">
+                  <div class="progress-text">Quest Progress:</div>
+                  <div class="progress-status">Not Started</div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">HONEY BEE</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="honeyQuestCheck" checked>
+                  <label for="honeyQuestCheck" class="checkbox-label">Enable</label>
+                </div>
+                <div class="quest-progress">
+                  <div class="progress-text">Quest Progress:</div>
+                  <div class="progress-status">Not Started</div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">BROWN BEAR</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="brownQuestCheck" checked>
+                  <label for="brownQuestCheck" class="checkbox-label">Enable</label>
+                </div>
+                <div class="quest-progress">
+                  <div class="progress-text">Quest Progress:</div>
+                  <div class="progress-status">Not Started</div>
+                </div>
+              </div>
+
+              <div class="section-card">
+                <div class="section-title">RILEY BEE</div>
+                <div class="checkbox-wrapper">
+                  <input type="checkbox" id="rileyQuestCheck" checked>
+                  <label for="rileyQuestCheck" class="checkbox-label">Enable</label>
+                </div>
+                <div class="checkbox-wrapper" style="margin-top: 8px;">
+                  <input type="checkbox" id="rileyQuestGatherInterruptCheck" checked>
+                  <label for="rileyQuestGatherInterruptCheck" class="checkbox-label">Allow Gather Interrupt</label>
+                </div>
+                <div class="quest-progress">
+                  <div class="progress-text">Quest Progress:</div>
+                  <div class="progress-status">Not Started</div>
+                </div>
+              </div>
+
+              <div class="section-card quest-settings">
+                <div class="section-title">SETTINGS</div>
+                
+                <div class="form-row">
+                  <div class="control-label">Gather Limit:</div>
+                  <input type="number" class="number-input" value="15" min="1" max="999" style="width: 60px;">
+                  <span class="text-label">Mins</span>
+                </div>
+
+                <div class="form-row" style="margin-top: 15px;">
+                  <div class="control-label">To Hive By:</div>
+                  <div class="control-input-group">
+                    <button class="btn btn-secondary btn-icon">&lt;</button>
+                    <input type="text" class="text-input" value="Walk" readonly style="width: 70px;">
+                    <button class="btn btn-secondary btn-icon">&gt;</button>
+                  </div>
+                </div>
+
+                <div class="checkbox-wrapper" style="margin-top: 15px;">
+                  <input type="checkbox" id="questBoostCheck" checked>
+                  <label for="questBoostCheck" class="checkbox-label">Use Boost Tab for Quests</label>
+                </div>
+              </div>
             </div>
           </div>
 
           <div id="planters-tab" class="tab-content">
-            <div class="section-card">
-              <div class="section-title">Planters Tab</div>
-              <p style="color: var(--text-secondary);">Awaiting implementation...</p>
+            <div class="planter-mode-selector">
+              <div class="mode-slider">
+                <input type="range" min="0" max="2" value="2" class="slider" id="planterModeSlider">
+                <div class="mode-labels">
+                  <span class="mode-label" style="color: var(--danger);">OFF</span>
+                  <span class="mode-label" style="color: #ff9200;">MANUAL</span>
+                  <span class="mode-label" style="color: #4caf50;">+</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="planter-content">
+              <div class="planter-left-section">
+                <div class="section-card">
+                  <div class="form-row">
+                    <div class="control-label">Presets:</div>
+                    <div class="control-input-group">
+                      <button class="btn btn-secondary btn-icon">&lt;</button>
+                      <input type="text" class="text-input" value="Default" readonly style="width: 80px;">
+                      <button class="btn btn-secondary btn-icon">&gt;</button>
+                    </div>
+                  </div>
+
+                  <div class="nectar-priority-table">
+                    <div class="table-header">
+                      <div class="col-priority">Nectar Priority</div>
+                      <div class="col-min">Min %</div>
+                    </div>
+                    <div class="table-row">
+                      <div class="row-num">1</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                      <input type="number" class="number-input" value="10" min="10" max="90" step="10" style="width: 50px;">
+                    </div>
+                    <div class="table-row">
+                      <div class="row-num">2</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                      <input type="number" class="number-input" value="10" min="10" max="90" step="10" style="width: 50px;">
+                    </div>
+                    <div class="table-row">
+                      <div class="row-num">3</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                      <input type="number" class="number-input" value="10" min="10" max="90" step="10" style="width: 50px;">
+                    </div>
+                    <div class="table-row">
+                      <div class="row-num">4</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                      <input type="number" class="number-input" value="10" min="10" max="90" step="10" style="width: 50px;">
+                    </div>
+                    <div class="table-row">
+                      <div class="row-num">5</div>
+                      <div class="control-input-group">
+                        <button class="btn btn-secondary btn-icon">&lt;</button>
+                        <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                        <button class="btn btn-secondary btn-icon">&gt;</button>
+                      </div>
+                      <input type="number" class="number-input" value="10" min="10" max="90" step="10" style="width: 50px;">
+                    </div>
+                  </div>
+
+                  <div class="harvest-controls">
+                    <div class="form-row">
+                      <div class="control-label">Harvest Every</div>
+                      <input type="number" class="number-input" value="2" min="1" max="72" style="width: 50px;">
+                      <span class="text-label">Hours</span>
+                    </div>
+                    <div class="checkbox-wrapper" style="margin-top: 10px;">
+                      <input type="checkbox" id="harvestFullGrown" checked>
+                      <label for="harvestFullGrown" class="checkbox-label">Full Grown</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="automaticHarvestInterval" checked>
+                      <label for="automaticHarvestInterval" class="checkbox-label">Auto</label>
+                    </div>
+                  </div>
+
+                  <div class="checkbox-wrapper" style="margin-top: 15px;">
+                    <input type="checkbox" id="gotoPlanterField" checked>
+                    <label for="gotoPlanterField" class="checkbox-label">Only Gather in Planter Field</label>
+                  </div>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="gatherFieldSipping" checked>
+                    <label for="gatherFieldSipping" class="checkbox-label">Gather Field Nectar Sipping</label>
+                  </div>
+
+                  <button class="btn btn-secondary" style="margin-top: 15px; width: 100%;">Show Timers (F4)</button>
+                </div>
+              </div>
+
+              <div class="planter-right-section">
+                <div class="section-card">
+                  <div class="section-title">ALLOWED PLANTERS</div>
+                  <div class="grid-2-col" style="margin-top: 10px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="plasticPlanter" checked>
+                      <label for="plasticPlanter" class="checkbox-label">Plastic</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="candyPlanter" checked>
+                      <label for="candyPlanter" class="checkbox-label">Candy</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="blueClayPlanter" checked>
+                      <label for="blueClayPlanter" class="checkbox-label">Blue Clay</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="redClayPlanter" checked>
+                      <label for="redClayPlanter" class="checkbox-label">Red Clay</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="tackyPlanter" checked>
+                      <label for="tackyPlanter" class="checkbox-label">Tacky</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="pesticidePlanter" checked>
+                      <label for="pesticidePlanter" class="checkbox-label">Pesticide</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="heatTreatedPlanter" checked>
+                      <label for="heatTreatedPlanter" class="checkbox-label">Heat-Treated</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="hydroponicPlanter" checked>
+                      <label for="hydroponicPlanter" class="checkbox-label">Hydroponic</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="petalPlanter" checked>
+                      <label for="petalPlanter" class="checkbox-label">Petal</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="planterOfPlenty" checked>
+                      <label for="planterOfPlenty" class="checkbox-label">Planter of Plenty</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="paperPlanter" checked>
+                      <label for="paperPlanter" class="checkbox-label">Paper</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="ticketPlanter" checked>
+                      <label for="ticketPlanter" class="checkbox-label">Ticket</label>
+                    </div>
+                  </div>
+
+                  <div class="form-row" style="margin-top: 15px;">
+                    <div class="control-label">Max Planters</div>
+                    <input type="number" class="number-input" value="3" min="0" max="3" style="width: 50px;">
+                  </div>
+                </div>
+
+                <div class="section-card" style="margin-top: 16px;">
+                  <div class="section-title">ALLOWED FIELDS</div>
+                  
+                  <div class="field-zones">
+                    <div class="zone-header">-- starting zone --</div>
+                    <div class="grid-2-col">
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="dandelionField" checked>
+                        <label for="dandelionField" class="checkbox-label">Dandelion (COM)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="sunflowerField" checked>
+                        <label for="sunflowerField" class="checkbox-label">Sunflower (SAT)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="mushroomField" checked>
+                        <label for="mushroomField" class="checkbox-label">Mushroom (MOT)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="blueFlowerField" checked>
+                        <label for="blueFlowerField" class="checkbox-label">Blue Flower (REF)</label>
+                      </div>
+                    </div>
+
+                    <div class="zone-header">-- 5 bee zone --</div>
+                    <div class="grid-2-col">
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="cloverField" checked>
+                        <label for="cloverField" class="checkbox-label">Clover (INV)</label>
+                      </div>
+                    </div>
+
+                    <div class="zone-header">-- 10 bee zone --</div>
+                    <div class="grid-2-col">
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="spiderField" checked>
+                        <label for="spiderField" class="checkbox-label">Spider (MOT)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="strawberryField" checked>
+                        <label for="strawberryField" class="checkbox-label">Strawberry (REF)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="bambooField" checked>
+                        <label for="bambooField" class="checkbox-label">Bamboo (COM)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="pineappleField" checked>
+                        <label for="pineappleField" class="checkbox-label">Pineapple (SAT)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="stumpField" checked>
+                        <label for="stumpField" class="checkbox-label">Stump (MOT)</label>
+                      </div>
+                    </div>
+
+                    <div class="zone-header">-- 15 bee zone --</div>
+                    <div class="grid-2-col">
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="cactusField" checked>
+                        <label for="cactusField" class="checkbox-label">Cactus (INV)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="pumpkinField" checked>
+                        <label for="pumpkinField" class="checkbox-label">Pumpkin (SAT)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="pineTreeField" checked>
+                        <label for="pineTreeField" class="checkbox-label">Pine Tree (COM)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="roseField" checked>
+                        <label for="roseField" class="checkbox-label">Rose (MOT)</label>
+                      </div>
+                    </div>
+
+                    <div class="zone-header">-- 25 bee zone --</div>
+                    <div class="grid-2-col">
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="mountainTopField" checked>
+                        <label for="mountainTopField" class="checkbox-label">Mountain Top (INV)</label>
+                      </div>
+                    </div>
+
+                    <div class="zone-header">-- 35 bee zone --</div>
+                    <div class="grid-2-col">
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="coconutField" checked>
+                        <label for="coconutField" class="checkbox-label">Coconut (REF)</label>
+                      </div>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="pepperField" checked>
+                        <label for="pepperField" class="checkbox-label">Pepper (INV)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="planter-options" style="margin-top: 15px;">
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="convertFullBagHarvest" checked>
+                      <label for="convertFullBagHarvest" class="checkbox-label">Convert Full Bag Harvest</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                      <input type="checkbox" id="gatherPlanterLoot" checked>
+                      <label for="gatherPlanterLoot" class="checkbox-label">Gather Planter Loot</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
