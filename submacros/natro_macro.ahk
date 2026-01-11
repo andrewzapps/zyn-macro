@@ -2266,12 +2266,8 @@ nm_MajorUpdateHelp(*)
 ; CREATE GUI
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 OnExit(GetOut)
-MainGui := Gui((AlwaysOnTop ? "+AlwaysOnTop " : "") "+Border +OwnDialogs", ZynUIMode ? "Natro Macro (Zyn UI Mode)" : "Natro Macro (Loading 0%)")
+MainGui := Gui((AlwaysOnTop ? "+AlwaysOnTop " : "") "+Border +OwnDialogs", "Natro Macro (Zyn UI Mode - Background)")
 WinSetTransparent 255-floor(GuiTransparency*2.55), MainGui
-if (ZynUIMode)
-	MainGui.Show("x" GuiX " y" GuiY " w490 h275 Hide")
-else
-	MainGui.Show("x" GuiX " y" GuiY " w490 h275")
 SetLoadingProgress(percent) => MainGui.Title := "Natro Macro (Loading " Round(percent) "%)"
 MainGui.OnEvent("Close", (*) => ExitApp())
 MainGui.SetFont("s8 cDefault Norm", "Tahoma")
