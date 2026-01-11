@@ -13,7 +13,6 @@ revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro)
 
 ![GitHub all releases](https://img.shields.io/github/downloads/andrewzapps/zyn-macro/total?label=Total%20Downloads&style=for-the-badge&logo=github)
 
-**Note:** Download counts may take a few minutes to update after downloading.
 
 ### Installation
 
