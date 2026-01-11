@@ -439,7 +439,206 @@ function setupGatherFieldListeners()
   }
 }
 
+async function loadCollectKillConfig()
+{
+  try
+  {
+    const result = await window.electronAPI.loadConfig();
+    
+    if (result.success && result.config && result.config.Collect)
+    {
+      const collectConfig = result.config.Collect;
+      
+      const configMapping = {
+        'clockCheck': 'ClockCheck',
+        'mondoCheck': 'MondoBuffCheck',
+        'antPassCheck': 'AntPassCheck',
+        'antPassBuyCheck': 'AntPassBuyCheck',
+        'roboPassCheck': 'RoboPassCheck',
+        'honeystormCheck': 'HoneystormCheck',
+        'honeyDisCheck': 'HoneyDisCheck',
+        'treatDisCheck': 'TreatDisCheck',
+        'blueberryCheck': 'BlueberryDisCheck',
+        'strawberryCheck': 'StrawberryDisCheck',
+        'coconutCheck': 'CoconutDisCheck',
+        'royalJellyCheck': 'RoyalJellyDisCheck',
+        'glueDisCheck': 'GlueDisCheck',
+        'normalMMCheck': 'NormalMemoryMatchCheck',
+        'megaMMCheck': 'MegaMemoryMatchCheck',
+        'extremeMMCheck': 'ExtremeMemoryMatchCheck',
+        'nightMMCheck': 'NightMemoryMatchCheck',
+        'winterMMCheck': 'WinterMemoryMatchCheck',
+        'blenderCheck': 'BlenderCheck',
+        'beesmasInterrupt': 'BeesmasGatherInterruptCheck',
+        'stockingsCheck': 'StockingsCheck',
+        'wreathCheck': 'WreathCheck',
+        'feastCheck': 'FeastCheck',
+        'rbpDelevelCheck': 'RBPDelevelCheck',
+        'gingerbreadCheck': 'GingerbreadCheck',
+        'snowMachineCheck': 'SnowMachineCheck',
+        'candlesCheck': 'CandlesCheck',
+        'samovarCheck': 'SamovarCheck',
+        'lidArtCheck': 'LidArtCheck',
+        'gummyBeaconCheck': 'GummyBeaconCheck',
+        'bugrunInterrupt': 'BugrunInterruptCheck',
+        'ladybugsKill': 'BugrunLadybugsCheck',
+        'ladybugsLoot': 'BugrunLadybugsLoot',
+        'rhinoKill': 'BugrunRhinoBeetlesCheck',
+        'rhinoLoot': 'BugrunRhinoBeetlesLoot',
+        'spiderKill': 'BugrunSpiderCheck',
+        'spiderLoot': 'BugrunSpiderLoot',
+        'mantisKill': 'BugrunMantisCheck',
+        'mantisLoot': 'BugrunMantisLoot',
+        'scorpionsKill': 'BugrunScorpionsCheck',
+        'scorpionsLoot': 'BugrunScorpionsLoot',
+        'werewolfKill': 'BugrunWerewolfCheck',
+        'werewolfLoot': 'BugrunWerewolfLoot',
+        'stingerCheck': 'StingerCheck',
+        'stingerDailyCheck': 'StingerDailyBonusCheck',
+        'stingerClover': 'StingerCloverCheck',
+        'stingerSpider': 'StingerSpiderCheck',
+        'stingerCactus': 'StingerCactusCheck',
+        'stingerRose': 'StingerRoseCheck',
+        'stingerMountain': 'StingerMountainTopCheck',
+        'stingerPepper': 'StingerPepperCheck',
+        'tunnelCheck': 'TunnelBearCheck',
+        'beetleCheck': 'KingBeetleCheck',
+        'crabCheck': 'CocoCrabCheck',
+        'snailCheck': 'StumpSnailCheck',
+        'chickCheck': 'CommandoCheck'
+      };
+      
+      const collectCheckboxes = Object.keys(configMapping);
+      
+      collectCheckboxes.forEach(checkboxId =>
+      {
+        const checkbox = document.getElementById(checkboxId);
+        const configKey = configMapping[checkboxId];
+        
+        if (checkbox && configKey && collectConfig[configKey] !== undefined)
+        {
+          checkbox.checked = collectConfig[configKey] === '1';
+        }
+      });
+      
+      const mondoAction = document.getElementById('mondoAction');
+      if (mondoAction && collectConfig.MondoAction)
+      {
+        mondoAction.value = collectConfig.MondoAction;
+      }
+      
+      const mondoSecs = document.getElementById('mondoSecs');
+      if (mondoSecs && collectConfig.MondoSecs)
+      {
+        mondoSecs.value = collectConfig.MondoSecs;
+      }
+      
+      const antPassAction = document.getElementById('antPassAction');
+      if (antPassAction && collectConfig.AntPassAction)
+      {
+        antPassAction.value = collectConfig.AntPassAction;
+      }
+      
+      const chickTime = document.getElementById('chickTime');
+      if (chickTime && collectConfig.ChickTime)
+      {
+        chickTime.value = collectConfig.ChickTime;
+      }
+      
+      const monsterRespawn = document.getElementById('monsterRespawn');
+      if (monsterRespawn && collectConfig.MonsterRespawnTime)
+      {
+        monsterRespawn.value = collectConfig.MonsterRespawnTime;
+      }
+      
+      console.log('Collect/Kill config loaded successfully');
+    }
+  }
+  catch (error)
+  {
+    console.error('Error loading collect/kill config:', error);
+  }
+}
+
+function setupCollectKillListeners()
+{
+  const configMapping = {
+    'clockCheck': 'ClockCheck',
+    'mondoCheck': 'MondoBuffCheck',
+    'antPassCheck': 'AntPassCheck',
+    'antPassBuyCheck': 'AntPassBuyCheck',
+    'roboPassCheck': 'RoboPassCheck',
+    'honeystormCheck': 'HoneystormCheck',
+    'honeyDisCheck': 'HoneyDisCheck',
+    'treatDisCheck': 'TreatDisCheck',
+    'blueberryCheck': 'BlueberryDisCheck',
+    'strawberryCheck': 'StrawberryDisCheck',
+    'coconutCheck': 'CoconutDisCheck',
+    'royalJellyCheck': 'RoyalJellyDisCheck',
+    'glueDisCheck': 'GlueDisCheck',
+    'normalMMCheck': 'NormalMemoryMatchCheck',
+    'megaMMCheck': 'MegaMemoryMatchCheck',
+    'extremeMMCheck': 'ExtremeMemoryMatchCheck',
+    'nightMMCheck': 'NightMemoryMatchCheck',
+    'winterMMCheck': 'WinterMemoryMatchCheck',
+    'blenderCheck': 'BlenderCheck',
+    'beesmasInterrupt': 'BeesmasGatherInterruptCheck',
+    'stockingsCheck': 'StockingsCheck',
+    'wreathCheck': 'WreathCheck',
+    'feastCheck': 'FeastCheck',
+    'rbpDelevelCheck': 'RBPDelevelCheck',
+    'gingerbreadCheck': 'GingerbreadCheck',
+    'snowMachineCheck': 'SnowMachineCheck',
+    'candlesCheck': 'CandlesCheck',
+    'samovarCheck': 'SamovarCheck',
+    'lidArtCheck': 'LidArtCheck',
+    'gummyBeaconCheck': 'GummyBeaconCheck',
+    'bugrunInterrupt': 'BugrunInterruptCheck',
+    'ladybugsKill': 'BugrunLadybugsCheck',
+    'ladybugsLoot': 'BugrunLadybugsLoot',
+    'rhinoKill': 'BugrunRhinoBeetlesCheck',
+    'rhinoLoot': 'BugrunRhinoBeetlesLoot',
+    'spiderKill': 'BugrunSpiderCheck',
+    'spiderLoot': 'BugrunSpiderLoot',
+    'mantisKill': 'BugrunMantisCheck',
+    'mantisLoot': 'BugrunMantisLoot',
+    'scorpionsKill': 'BugrunScorpionsCheck',
+    'scorpionsLoot': 'BugrunScorpionsLoot',
+    'werewolfKill': 'BugrunWerewolfCheck',
+    'werewolfLoot': 'BugrunWerewolfLoot',
+    'stingerCheck': 'StingerCheck',
+    'stingerDailyCheck': 'StingerDailyBonusCheck',
+    'stingerClover': 'StingerCloverCheck',
+    'stingerSpider': 'StingerSpiderCheck',
+    'stingerCactus': 'StingerCactusCheck',
+    'stingerRose': 'StingerRoseCheck',
+    'stingerMountain': 'StingerMountainTopCheck',
+    'stingerPepper': 'StingerPepperCheck',
+    'tunnelCheck': 'TunnelBearCheck',
+    'beetleCheck': 'KingBeetleCheck',
+    'crabCheck': 'CocoCrabCheck',
+    'snailCheck': 'StumpSnailCheck',
+    'chickCheck': 'CommandoCheck'
+  };
+  
+  Object.entries(configMapping).forEach(([id, key]) =>
+  {
+    const checkbox = document.getElementById(id);
+    if (checkbox)
+    {
+      checkbox.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Collect', key, checkbox.checked ? '1' : '0');
+        console.log(`Saved ${key}:`, checkbox.checked);
+      });
+    }
+  });
+}
+
 setupGatherFieldListeners();
 loadGatherConfig();
+
+setupCollectKillListeners();
+loadCollectKillConfig();
 
 lucide.createIcons();
