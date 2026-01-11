@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-green.svg)
 ![Downloads](https://img.shields.io/github/downloads/andrewzapps/zyn-macro/latest/total?label=downloads&color=success)
 
 revamped [Natro Macro](https://github.com/NatroTeam/NatroMacro) 
