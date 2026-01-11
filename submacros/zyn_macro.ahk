@@ -109,7 +109,7 @@ OnMessage(0x5558, nm_AmuletPrompt)
 OnMessage(0x5559, nm_FindItem)
 
 ; set version identifier
-VersionID := "1.0.3"
+VersionID := "1.0.4"
 
 ;initial load warnings
 if (A_ScreenDPI != 96)
@@ -2297,55 +2297,12 @@ nm_StopButton(GuiCtrl, *){
 		return stop()
 }
 
-;save GUI position (on exit)
+;save GUI position (on exit) - no-op without GUI
 nm_saveGUIPos(){
-	global GuiX, GuiY
-	wp := Buffer(44)
-	DllCall("GetWindowPlacement", "UInt", MainGui.Hwnd, "Ptr", wp)
-	x := NumGet(wp, 28, "Int"), y := NumGet(wp, 32, "Int")
-	if (x > 0)
-		try IniWrite x, "settings\nm_config.ini", "Settings", "GuiX"
-	if (y > 0)
-		try IniWrite y, "settings\nm_config.ini", "Settings", "GuiY"
 }
 
-;tab (un)lock
+;tab (un)lock (no-op without GUI)
 nm_LockTabs(lock:=1){
-	static tabs := ["Gather","Collect","Boost","Quests","Planters","Status","Settings","Misc"]
-	global bitmaps
-
-	;controls outside tabs
-	if (lock = 1)
-	{
-		MainGui["CurrentFieldUp"].Enabled := 0
-		MainGui["CurrentFieldDown"].Enabled := 0
-		try MainGui["SecretButton"].Enabled := 0
-
-		pBM := Gdip_BitmapConvertGray(bitmaps["discordgui"]), hBM := Gdip_CreateHBITMAPFromBitmap(pBM)
-		MainGui["ImageDiscordLink"].Value := "HBITMAP:*" hBM, MainGui["ImageDiscordLink"].OnEvent("Click", DiscordLink, 0)
-		Gdip_DisposeImage(pBM), DllCall("DeleteObject", "Ptr", hBM)
-
-		MainGui["ImageGitHubLink"].OnEvent("Click", GitHubRepoLink, 0)
-
-		c := "Lock"
-	}
-	else
-	{
-		MainGui["CurrentFieldUp"].Enabled := 1
-		MainGui["CurrentFieldDown"].Enabled := 1
-		try MainGui["SecretButton"].Enabled := 1
-
-		hBM := Gdip_CreateHBITMAPFromBitmap(bitmaps["discordgui"])
-		MainGui["ImageDiscordLink"].Value := "HBITMAP:*" hBM, MainGui["ImageDiscordLink"].OnEvent("Click", DiscordLink)
-		DllCall("DeleteObject", "Ptr", hBM)
-
-		MainGui["ImageGitHubLink"].OnEvent("Click", GitHubRepoLink)
-
-		c := "UnLock"
-	}
-
-	for i,tab in tabs
-		nm_Tab%tab%%c%()
 }
 nm_TabGatherLock(){
 	global
@@ -20745,7 +20702,6 @@ start(*){
 	global
 	SetKeyDelay 100+KeyDelay
 	nm_LockTabs()
-	MainGui["StartButton"].Enabled := 0
 	Hotkey StartHotkey, "Off"
 	nm_setStatus("Begin", "Macro")
 	local ForceStart := (A_Args.Has(1) && (A_Args[1] = 1))
@@ -20881,7 +20837,7 @@ start(*){
 	global GatherFieldBoosted:=0
 	global GatherFieldBoostedStart:=nowUnix()-3600
 	global ConvertGatherFlag:=0
-	CurrentField := MainGui["CurrentField"].Text
+	CurrentField := FieldName%CurrentFieldNum%
 	;set ActiveHotkeys[]
 	global ActiveHotkeys:=[]
 	;set hotbar values for actions handled by nm_hotbar()
