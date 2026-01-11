@@ -1004,7 +1004,7 @@
               <div class="section-card">
                 <div class="section-title">POLAR BEAR</div>
                 <div class="checkbox-wrapper">
-                  <input type="checkbox" id="polarQuestCheck" checked>
+                  <input type="checkbox" id="polarQuestCheck">
                   <label for="polarQuestCheck" class="checkbox-label">Enable</label>
                 </div>
                 <div class="checkbox-wrapper" style="margin-top: 8px;">
@@ -1020,7 +1020,7 @@
               <div class="section-card">
                 <div class="section-title">BLACK BEAR</div>
                 <div class="checkbox-wrapper">
-                  <input type="checkbox" id="blackQuestCheck" checked>
+                  <input type="checkbox" id="blackQuestCheck">
                   <label for="blackQuestCheck" class="checkbox-label">Enable</label>
                 </div>
                 <div class="quest-progress">
@@ -1032,7 +1032,7 @@
               <div class="section-card">
                 <div class="section-title">BUCKO BEE</div>
                 <div class="checkbox-wrapper">
-                  <input type="checkbox" id="buckoQuestCheck" checked>
+                  <input type="checkbox" id="buckoQuestCheck">
                   <label for="buckoQuestCheck" class="checkbox-label">Enable</label>
                 </div>
                 <div class="checkbox-wrapper" style="margin-top: 8px;">
@@ -1048,7 +1048,7 @@
               <div class="section-card">
                 <div class="section-title">HONEY BEE</div>
                 <div class="checkbox-wrapper">
-                  <input type="checkbox" id="honeyQuestCheck" checked>
+                  <input type="checkbox" id="honeyQuestCheck">
                   <label for="honeyQuestCheck" class="checkbox-label">Enable</label>
                 </div>
                 <div class="quest-progress">
@@ -1060,7 +1060,7 @@
               <div class="section-card">
                 <div class="section-title">BROWN BEAR</div>
                 <div class="checkbox-wrapper">
-                  <input type="checkbox" id="brownQuestCheck" checked>
+                  <input type="checkbox" id="brownQuestCheck">
                   <label for="brownQuestCheck" class="checkbox-label">Enable</label>
                 </div>
                 <div class="quest-progress">
@@ -1072,7 +1072,7 @@
               <div class="section-card">
                 <div class="section-title">RILEY BEE</div>
                 <div class="checkbox-wrapper">
-                  <input type="checkbox" id="rileyQuestCheck" checked>
+                  <input type="checkbox" id="rileyQuestCheck">
                   <label for="rileyQuestCheck" class="checkbox-label">Enable</label>
                 </div>
                 <div class="checkbox-wrapper" style="margin-top: 8px;">
@@ -1090,7 +1090,7 @@
                 
                 <div class="form-row">
                   <div class="control-label">Gather Limit:</div>
-                  <input type="number" class="number-input" value="15" min="1" max="999" style="width: 60px;">
+                  <input type="number" id="questGatherMins" class="number-input" value="5" min="1" max="999" style="width: 60px;">
                   <span class="text-label">Mins</span>
                 </div>
 
@@ -1098,13 +1098,13 @@
                   <div class="control-label">To Hive By:</div>
                   <div class="control-input-group">
                     <button class="btn btn-secondary btn-icon">&lt;</button>
-                    <input type="text" class="text-input" value="Walk" readonly style="width: 70px;">
+                    <input type="text" id="questGatherReturnBy" class="text-input" value="Walk" readonly style="width: 70px;">
                     <button class="btn btn-secondary btn-icon">&gt;</button>
                   </div>
                 </div>
 
                 <div class="checkbox-wrapper" style="margin-top: 15px;">
-                  <input type="checkbox" id="questBoostCheck" checked>
+                  <input type="checkbox" id="questBoostCheck">
                   <label for="questBoostCheck" class="checkbox-label">Use Boost Tab for Quests</label>
                 </div>
               </div>

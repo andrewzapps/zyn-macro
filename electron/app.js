@@ -745,6 +745,108 @@ function setupBoostListeners()
   }
 }
 
+async function loadQuestsConfig()
+{
+  try
+  {
+    const result = await window.electronAPI.loadConfig();
+    
+    if (result.success && result.config && result.config.Quests)
+    {
+      const questsConfig = result.config.Quests;
+      
+      const configMapping = {
+        'polarQuestCheck': 'PolarQuestCheck',
+        'polarQuestGatherInterruptCheck': 'PolarQuestGatherInterruptCheck',
+        'honeyQuestCheck': 'HoneyQuestCheck',
+        'blackQuestCheck': 'BlackQuestCheck',
+        'brownQuestCheck': 'BrownQuestCheck',
+        'buckoQuestCheck': 'BuckoQuestCheck',
+        'buckoQuestGatherInterruptCheck': 'BuckoQuestGatherInterruptCheck',
+        'rileyQuestCheck': 'RileyQuestCheck',
+        'rileyQuestGatherInterruptCheck': 'RileyQuestGatherInterruptCheck',
+        'questBoostCheck': 'QuestBoostCheck'
+      };
+      
+      Object.entries(configMapping).forEach(([id, key]) =>
+      {
+        const checkbox = document.getElementById(id);
+        if (checkbox && questsConfig[key] !== undefined)
+        {
+          checkbox.checked = questsConfig[key] === '1';
+        }
+      });
+      
+      const questGatherMins = document.getElementById('questGatherMins');
+      if (questGatherMins && questsConfig.QuestGatherMins)
+      {
+        questGatherMins.value = questsConfig.QuestGatherMins;
+      }
+      
+      const questGatherReturnBy = document.getElementById('questGatherReturnBy');
+      if (questGatherReturnBy && questsConfig.QuestGatherReturnBy)
+      {
+        questGatherReturnBy.value = questsConfig.QuestGatherReturnBy;
+      }
+      
+      console.log('Quests config loaded successfully');
+    }
+  }
+  catch (error)
+  {
+    console.error('Error loading quests config:', error);
+  }
+}
+
+function setupQuestsListeners()
+{
+  const configMapping = {
+    'polarQuestCheck': 'PolarQuestCheck',
+    'polarQuestGatherInterruptCheck': 'PolarQuestGatherInterruptCheck',
+    'honeyQuestCheck': 'HoneyQuestCheck',
+    'blackQuestCheck': 'BlackQuestCheck',
+    'brownQuestCheck': 'BrownQuestCheck',
+    'buckoQuestCheck': 'BuckoQuestCheck',
+    'buckoQuestGatherInterruptCheck': 'BuckoQuestGatherInterruptCheck',
+    'rileyQuestCheck': 'RileyQuestCheck',
+    'rileyQuestGatherInterruptCheck': 'RileyQuestGatherInterruptCheck',
+    'questBoostCheck': 'QuestBoostCheck'
+  };
+  
+  Object.entries(configMapping).forEach(([id, key]) =>
+  {
+    const checkbox = document.getElementById(id);
+    if (checkbox)
+    {
+      checkbox.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Quests', key, checkbox.checked ? '1' : '0');
+        console.log(`Saved ${key}:`, checkbox.checked);
+      });
+    }
+  });
+  
+  const questGatherMins = document.getElementById('questGatherMins');
+  if (questGatherMins)
+  {
+    questGatherMins.addEventListener('change', async () =>
+    {
+      await window.electronAPI.saveConfig('Quests', 'QuestGatherMins', questGatherMins.value);
+      console.log('Saved QuestGatherMins:', questGatherMins.value);
+    });
+  }
+  
+  const questGatherReturnBy = document.getElementById('questGatherReturnBy');
+  if (questGatherReturnBy)
+  {
+    questGatherReturnBy.addEventListener('change', async () =>
+    {
+      await window.electronAPI.saveConfig('Quests', 'QuestGatherReturnBy', questGatherReturnBy.value);
+      console.log('Saved QuestGatherReturnBy:', questGatherReturnBy.value);
+    });
+  }
+}
+
 setupGatherFieldListeners();
 loadGatherConfig();
 
@@ -753,5 +855,8 @@ loadCollectKillConfig();
 
 setupBoostListeners();
 loadBoostConfig();
+
+setupQuestsListeners();
+loadQuestsConfig();
 
 lucide.createIcons();
