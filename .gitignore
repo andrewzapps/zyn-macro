@@ -38,7 +38,15 @@ pids
 *.seed
 
 # Dependencies
-node_modules
+node_modules/
+package-lock.json
+
+# Python
+venv/
+venv.bak/
+*.pyc
+__pycache__/
+*.py[cod]
 
 # Test output
 lib-cov
