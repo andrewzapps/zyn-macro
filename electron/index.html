@@ -800,7 +800,7 @@
                     <div class="control-label">1:</div>
                     <div class="control-input-group">
                       <button class="btn btn-secondary btn-icon">&lt;</button>
-                      <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                      <input type="text" id="fieldBooster1" class="text-input" value="None" readonly style="width: 80px;">
                       <button class="btn btn-secondary btn-icon">&gt;</button>
                     </div>
                   </div>
@@ -809,7 +809,7 @@
                     <div class="control-label">2:</div>
                     <div class="control-input-group">
                       <button class="btn btn-secondary btn-icon">&lt;</button>
-                      <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                      <input type="text" id="fieldBooster2" class="text-input" value="None" readonly style="width: 80px;">
                       <button class="btn btn-secondary btn-icon">&gt;</button>
                     </div>
                   </div>
@@ -818,7 +818,7 @@
                     <div class="control-label">3:</div>
                     <div class="control-input-group">
                       <button class="btn btn-secondary btn-icon">&lt;</button>
-                      <input type="text" class="text-input" value="None" readonly style="width: 80px;">
+                      <input type="text" id="fieldBooster3" class="text-input" value="None" readonly style="width: 80px;">
                       <button class="btn btn-secondary btn-icon">&gt;</button>
                     </div>
                   </div>
@@ -826,7 +826,7 @@
 
                 <div class="form-row" style="margin-top: 15px;">
                   <div class="control-label">Separate By:</div>
-                  <input type="number" class="number-input" value="0" min="0" max="12" style="width: 50px;">
+                  <input type="number" id="fieldBoosterMins" class="number-input" value="15" min="0" max="120" style="width: 50px;">
                   <span class="text-label">Mins</span>
                 </div>
 
@@ -862,66 +862,90 @@
                 <div class="hotbar-grid">
                   <div class="hotbar-row">
                     <div class="control-label">2:</div>
-                    <select class="form-select" style="width: 100px;">
-                      <option>Off</option>
+                    <select id="hotbarWhile2" class="form-select" style="width: 100px;">
+                      <option>Never</option>
                       <option>Always</option>
                       <option>Gathering</option>
                       <option>Traveling</option>
+                      <option>Microconverter</option>
+                      <option>Whirligig</option>
+                      <option>Enzymes</option>
+                      <option>Glitter</option>
                     </select>
                     <span class="text-label" style="color: var(--danger);">&lt;-- OFF</span>
                   </div>
                   
                   <div class="hotbar-row">
                     <div class="control-label">3:</div>
-                    <select class="form-select" style="width: 100px;">
-                      <option>Off</option>
+                    <select id="hotbarWhile3" class="form-select" style="width: 100px;">
+                      <option>Never</option>
                       <option>Always</option>
                       <option>Gathering</option>
                       <option>Traveling</option>
+                      <option>Microconverter</option>
+                      <option>Whirligig</option>
+                      <option>Enzymes</option>
+                      <option>Glitter</option>
                     </select>
                     <span class="text-label" style="color: var(--danger);">&lt;-- OFF</span>
                   </div>
                   
                   <div class="hotbar-row">
                     <div class="control-label">4:</div>
-                    <select class="form-select" style="width: 100px;">
-                      <option>Off</option>
+                    <select id="hotbarWhile4" class="form-select" style="width: 100px;">
+                      <option>Never</option>
                       <option>Always</option>
                       <option>Gathering</option>
                       <option>Traveling</option>
+                      <option>Microconverter</option>
+                      <option>Whirligig</option>
+                      <option>Enzymes</option>
+                      <option>Glitter</option>
                     </select>
                     <span class="text-label" style="color: var(--danger);">&lt;-- OFF</span>
                   </div>
                   
                   <div class="hotbar-row">
                     <div class="control-label">5:</div>
-                    <select class="form-select" style="width: 100px;">
-                      <option>Off</option>
+                    <select id="hotbarWhile5" class="form-select" style="width: 100px;">
+                      <option>Never</option>
                       <option>Always</option>
                       <option>Gathering</option>
                       <option>Traveling</option>
+                      <option>Microconverter</option>
+                      <option>Whirligig</option>
+                      <option>Enzymes</option>
+                      <option>Glitter</option>
                     </select>
                     <span class="text-label" style="color: var(--danger);">&lt;-- OFF</span>
                   </div>
                   
                   <div class="hotbar-row">
                     <div class="control-label">6:</div>
-                    <select class="form-select" style="width: 100px;">
-                      <option>Off</option>
+                    <select id="hotbarWhile6" class="form-select" style="width: 100px;">
+                      <option>Never</option>
                       <option>Always</option>
                       <option>Gathering</option>
                       <option>Traveling</option>
+                      <option>Microconverter</option>
+                      <option>Whirligig</option>
+                      <option>Enzymes</option>
+                      <option>Glitter</option>
                     </select>
                     <span class="text-label" style="color: var(--danger);">&lt;-- OFF</span>
                   </div>
                   
                   <div class="hotbar-row">
                     <div class="control-label">7:</div>
-                    <select class="form-select" style="width: 100px;">
-                      <option>Off</option>
+                    <select id="hotbarWhile7" class="form-select" style="width: 100px;">
+                      <option>Never</option>
                       <option>Always</option>
                       <option>Gathering</option>
                       <option>Traveling</option>
+                      <option>Microconverter</option>
+                      <option>Whirligig</option>
+                      <option>Enzymes</option>
+                      <option>Glitter</option>
                     </select>
                     <span class="text-label" style="color: var(--danger);">&lt;-- OFF</span>
                   </div>

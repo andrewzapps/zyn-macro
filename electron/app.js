@@ -635,10 +635,123 @@ function setupCollectKillListeners()
   });
 }
 
+async function loadBoostConfig()
+{
+  try
+  {
+    const result = await window.electronAPI.loadConfig();
+    
+    if (result.success && result.config && result.config.Boost)
+    {
+      const boostConfig = result.config.Boost;
+      
+      const fieldBooster1 = document.getElementById('fieldBooster1');
+      if (fieldBooster1 && boostConfig.FieldBooster1)
+      {
+        fieldBooster1.value = boostConfig.FieldBooster1;
+      }
+      
+      const fieldBooster2 = document.getElementById('fieldBooster2');
+      if (fieldBooster2 && boostConfig.FieldBooster2)
+      {
+        fieldBooster2.value = boostConfig.FieldBooster2;
+      }
+      
+      const fieldBooster3 = document.getElementById('fieldBooster3');
+      if (fieldBooster3 && boostConfig.FieldBooster3)
+      {
+        fieldBooster3.value = boostConfig.FieldBooster3;
+      }
+      
+      const fieldBoosterMins = document.getElementById('fieldBoosterMins');
+      if (fieldBoosterMins && boostConfig.FieldBoosterMins)
+      {
+        fieldBoosterMins.value = boostConfig.FieldBoosterMins;
+      }
+      
+      const boostChaserCheck = document.getElementById('boostChaserCheck');
+      if (boostChaserCheck && boostConfig.BoostChaserCheck !== undefined)
+      {
+        boostChaserCheck.checked = boostConfig.BoostChaserCheck === '1';
+      }
+      
+      for (let i = 2; i <= 7; i++)
+      {
+        const hotbarWhile = document.getElementById(`hotbarWhile${i}`);
+        if (hotbarWhile && boostConfig[`HotbarWhile${i}`])
+        {
+          hotbarWhile.value = boostConfig[`HotbarWhile${i}`];
+        }
+      }
+      
+      const stickerStackCheck = document.getElementById('stickerStackCheck');
+      if (stickerStackCheck && boostConfig.StickerStackCheck !== undefined)
+      {
+        stickerStackCheck.checked = boostConfig.StickerStackCheck === '1';
+      }
+      
+      console.log('Boost config loaded successfully');
+    }
+  }
+  catch (error)
+  {
+    console.error('Error loading boost config:', error);
+  }
+}
+
+function setupBoostListeners()
+{
+  const fieldBoosterMins = document.getElementById('fieldBoosterMins');
+  if (fieldBoosterMins)
+  {
+    fieldBoosterMins.addEventListener('change', async () =>
+    {
+      await window.electronAPI.saveConfig('Boost', 'FieldBoosterMins', fieldBoosterMins.value);
+      console.log('Saved FieldBoosterMins:', fieldBoosterMins.value);
+    });
+  }
+  
+  const boostChaserCheck = document.getElementById('boostChaserCheck');
+  if (boostChaserCheck)
+  {
+    boostChaserCheck.addEventListener('change', async () =>
+    {
+      await window.electronAPI.saveConfig('Boost', 'BoostChaserCheck', boostChaserCheck.checked ? '1' : '0');
+      console.log('Saved BoostChaserCheck:', boostChaserCheck.checked);
+    });
+  }
+  
+  for (let i = 2; i <= 7; i++)
+  {
+    const hotbarWhile = document.getElementById(`hotbarWhile${i}`);
+    if (hotbarWhile)
+    {
+      hotbarWhile.addEventListener('change', async () =>
+      {
+        await window.electronAPI.saveConfig('Boost', `HotbarWhile${i}`, hotbarWhile.value);
+        console.log(`Saved HotbarWhile${i}:`, hotbarWhile.value);
+      });
+    }
+  }
+  
+  const stickerStackCheck = document.getElementById('stickerStackCheck');
+  if (stickerStackCheck)
+  {
+    stickerStackCheck.addEventListener('change', async () =>
+    {
+      await window.electronAPI.saveConfig('Boost', 'StickerStackCheck', stickerStackCheck.checked ? '1' : '0');
+      console.log('Saved StickerStackCheck:', stickerStackCheck.checked);
+    });
+  }
+}
+
 setupGatherFieldListeners();
 loadGatherConfig();
 
 setupCollectKillListeners();
 loadCollectKillConfig();
+
+setupBoostListeners();
+loadBoostConfig();
 
 lucide.createIcons();
