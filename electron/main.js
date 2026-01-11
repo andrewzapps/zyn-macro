@@ -63,66 +63,98 @@ app.on('window-all-closed', () =>
   }
 });
 
-ipcMain.on('start-macro', (event, data) =>
+ipcMain.handle('start-macro', async (event, data) =>
 {
   if (ahkProcess)
   {
-    event.reply('macro-error', { error: 'Macro is already running' });
-    return;
+    mainWindow.webContents.send('macro-error', { error: 'Macro is already running' });
+    return { success: false, error: 'Macro is already running' };
   }
 
   const resourcePath = getResourcePath();
   const ahkExePath = path.join(resourcePath, 'submacros', 'AutoHotkey32.exe');
   const ahkScriptPath = path.join(resourcePath, 'submacros', 'natro_macro.ahk');
   
-  ahkProcess = spawn(ahkExePath, [ahkScriptPath, '/zynui']);
-  
-  ahkProcess.stdout.on('data', (data) =>
+  try
   {
-    const message = data.toString().trim();
-    if (message)
+    ahkProcess = spawn(ahkExePath, [ahkScriptPath, '/zynui']);
+    
+    ahkProcess.stdout.on('data', (data) =>
     {
-      event.reply('macro-status', { status: message });
-    }
-  });
-  
-  ahkProcess.stderr.on('data', (data) =>
-  {
-    const error = data.toString().trim();
-    if (error)
+      const message = data.toString().trim();
+      if (message && mainWindow)
+      {
+        mainWindow.webContents.send('macro-status', { status: message });
+      }
+    });
+    
+    ahkProcess.stderr.on('data', (data) =>
     {
-      event.reply('macro-error', { error });
+      const error = data.toString().trim();
+      if (error && mainWindow)
+      {
+        mainWindow.webContents.send('macro-error', { error });
+      }
+    });
+    
+    ahkProcess.on('close', (code) =>
+    {
+      ahkProcess = null;
+      if (mainWindow)
+      {
+        mainWindow.webContents.send('macro-stopped', { code });
+      }
+    });
+    
+    ahkProcess.on('error', (err) =>
+    {
+      if (mainWindow)
+      {
+        mainWindow.webContents.send('macro-error', { error: `Failed to start macro: ${err.message}` });
+      }
+      ahkProcess = null;
+    });
+    
+    if (mainWindow)
+    {
+      mainWindow.webContents.send('macro-started', { success: true });
     }
-  });
-  
-  ahkProcess.on('close', (code) =>
+    
+    return { success: true };
+  }
+  catch (error)
   {
     ahkProcess = null;
-    event.reply('macro-stopped', { code });
-  });
-  
-  ahkProcess.on('error', (err) =>
-  {
-    event.reply('macro-error', { error: `Failed to start macro: ${err.message}` });
-    ahkProcess = null;
-  });
-  
-  event.reply('macro-started', { success: true });
+    if (mainWindow)
+    {
+      mainWindow.webContents.send('macro-error', { error: `Failed to start macro: ${error.message}` });
+    }
+    return { success: false, error: error.message };
+  }
 });
 
-ipcMain.on('stop-macro', (event) =>
+ipcMain.handle('stop-macro', async () =>
 {
   if (ahkProcess)
   {
     ahkProcess.kill();
     ahkProcess = null;
-    event.reply('macro-stopped', { success: true });
+    if (mainWindow)
+    {
+      mainWindow.webContents.send('macro-stopped', { success: true });
+    }
+    return { success: true };
   }
+  return { success: false, error: 'No macro running' };
 });
 
-ipcMain.on('pause-macro', (event) =>
+ipcMain.handle('pause-macro', async () =>
 {
-  event.reply('macro-paused', { success: true });
+  if (mainWindow)
+  {
+    mainWindow.webContents.send('macro-paused', { success: true });
+  }
+  return { success: true };
 });
 
 ipcMain.handle('load-config', async () =>

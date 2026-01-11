@@ -1110,85 +1110,117 @@ function addLogEntry(message)
   statusLogContainer.scrollTop = reverse ? 0 : statusLogContainer.scrollHeight;
 }
 
-startMacroBtn.addEventListener('click', async () =>
+if (startMacroBtn && window.electronAPI)
 {
-  try
+  startMacroBtn.addEventListener('click', async () =>
   {
-    addLogEntry('Starting macro...');
-    updateMacroStatus('running', 'Macro Starting...');
-    
-    await window.electronAPI.startMacro({});
-    
-    macroRunning = true;
-    macroPaused = false;
-    
-    startMacroBtn.disabled = true;
-    pauseMacroBtn.disabled = false;
-    stopMacroBtn.disabled = false;
-    
-    addLogEntry('Macro started successfully!');
-    updateMacroStatus('running', 'Macro Running');
-  }
-  catch (error)
-  {
-    addLogEntry(`Error starting macro: ${error.message}`);
-    updateMacroStatus('error', 'Error Starting Macro');
-  }
-});
-
-pauseMacroBtn.addEventListener('click', async () =>
-{
-  try
-  {
-    if (macroPaused)
+    try
     {
-      addLogEntry('Resuming macro...');
-      await window.electronAPI.pauseMacro();
-      macroPaused = false;
-      pauseMacroBtn.textContent = 'Pause';
-      updateMacroStatus('running', 'Macro Running');
-      addLogEntry('Macro resumed');
+      addLogEntry('Starting macro...');
+      updateMacroStatus('running', 'Macro Starting...');
+      
+      const result = await window.electronAPI.startMacro({});
+      
+      if (result && result.success)
+      {
+        macroRunning = true;
+        macroPaused = false;
+        
+        startMacroBtn.disabled = true;
+        pauseMacroBtn.disabled = false;
+        stopMacroBtn.disabled = false;
+        
+        addLogEntry('Macro started successfully!');
+        updateMacroStatus('running', 'Macro Running');
+      }
+      else
+      {
+        addLogEntry(`Error: ${result?.error || 'Failed to start macro'}`);
+        updateMacroStatus('error', 'Error Starting Macro');
+        startMacroBtn.disabled = false;
+      }
     }
-    else
+    catch (error)
     {
-      addLogEntry('Pausing macro...');
-      await window.electronAPI.pauseMacro();
-      macroPaused = true;
-      pauseMacroBtn.textContent = 'Resume';
-      updateMacroStatus('paused', 'Macro Paused');
-      addLogEntry('Macro paused');
+      addLogEntry(`Error starting macro: ${error.message}`);
+      updateMacroStatus('error', 'Error Starting Macro');
+      startMacroBtn.disabled = false;
+      console.error('Start macro error:', error);
     }
-  }
-  catch (error)
-  {
-    addLogEntry(`Error pausing macro: ${error.message}`);
-  }
-});
+  });
+}
 
-stopMacroBtn.addEventListener('click', async () =>
+if (pauseMacroBtn && window.electronAPI)
 {
-  try
+  pauseMacroBtn.addEventListener('click', async () =>
   {
-    addLogEntry('Stopping macro...');
-    await window.electronAPI.stopMacro();
-    
-    macroRunning = false;
-    macroPaused = false;
-    
-    startMacroBtn.disabled = false;
-    pauseMacroBtn.disabled = true;
-    stopMacroBtn.disabled = true;
-    pauseMacroBtn.textContent = 'Pause';
-    
-    updateMacroStatus('stopped', 'Macro Stopped');
-    addLogEntry('Macro stopped successfully');
-  }
-  catch (error)
+    try
+    {
+      if (macroPaused)
+      {
+        addLogEntry('Resuming macro...');
+        await window.electronAPI.pauseMacro();
+        macroPaused = false;
+        pauseMacroBtn.innerHTML = '<i data-lucide="pause" style="width: 20px; height: 20px;"></i> Pause';
+        lucide.createIcons();
+        updateMacroStatus('running', 'Macro Running');
+        addLogEntry('Macro resumed');
+      }
+      else
+      {
+        addLogEntry('Pausing macro...');
+        await window.electronAPI.pauseMacro();
+        macroPaused = true;
+        pauseMacroBtn.innerHTML = '<i data-lucide="play" style="width: 20px; height: 20px;"></i> Resume';
+        lucide.createIcons();
+        updateMacroStatus('paused', 'Macro Paused');
+        addLogEntry('Macro paused');
+      }
+    }
+    catch (error)
+    {
+      addLogEntry(`Error pausing macro: ${error.message}`);
+      console.error('Pause macro error:', error);
+    }
+  });
+}
+
+if (stopMacroBtn && window.electronAPI)
+{
+  stopMacroBtn.addEventListener('click', async () =>
   {
-    addLogEntry(`Error stopping macro: ${error.message}`);
-    updateMacroStatus('error', 'Error Stopping Macro');
-  }
-});
+    try
+    {
+      addLogEntry('Stopping macro...');
+      const result = await window.electronAPI.stopMacro();
+      
+      if (result && result.success)
+      {
+        macroRunning = false;
+        macroPaused = false;
+        
+        startMacroBtn.disabled = false;
+        pauseMacroBtn.disabled = true;
+        stopMacroBtn.disabled = true;
+        pauseMacroBtn.innerHTML = '<i data-lucide="pause" style="width: 20px; height: 20px;"></i> Pause';
+        lucide.createIcons();
+        
+        updateMacroStatus('stopped', 'Macro Stopped');
+        addLogEntry('Macro stopped successfully');
+      }
+      else
+      {
+        addLogEntry(`Error: ${result?.error || 'Failed to stop macro'}`);
+      }
+    }
+    catch (error)
+    {
+      addLogEntry(`Error stopping macro: ${error.message}`);
+      updateMacroStatus('error', 'Error Stopping Macro');
+      console.error('Stop macro error:', error);
+    }
+  });
+}
 
 if (window.electronAPI.onMacroStatus)
 {

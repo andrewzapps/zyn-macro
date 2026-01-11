@@ -2,9 +2,9 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI',
 {
-  startMacro: (data) => ipcRenderer.send('start-macro', data),
-  stopMacro: () => ipcRenderer.send('stop-macro'),
-  pauseMacro: () => ipcRenderer.send('pause-macro'),
+  startMacro: (data) => ipcRenderer.invoke('start-macro', data),
+  stopMacro: () => ipcRenderer.invoke('stop-macro'),
+  pauseMacro: () => ipcRenderer.invoke('pause-macro'),
   
   onMacroStarted: (callback) => ipcRenderer.on('macro-started', (event, data) => callback(data)),
   onMacroStopped: (callback) => ipcRenderer.on('macro-stopped', (event, data) => callback(data)),
