@@ -14,6 +14,7 @@ function createWindow()
     minWidth: 1200,
     minHeight: 800,
     backgroundColor: '#1e1e1e',
+    icon: path.join(__dirname, 'zyn2.png'),
     webPreferences:
     {
       preload: path.join(__dirname, 'preload.js'),
